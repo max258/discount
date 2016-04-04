@@ -1,0 +1,8 @@
+E:\C#\Discount\ConsoleLoader\bin\Debug\ConsoleLoader.exe.config
+E:\C#\Discount\ConsoleLoader\bin\Debug\ConsoleLoader.exe
+E:\C#\Discount\ConsoleLoader\bin\Debug\ConsoleLoader.pdb
+E:\C#\Discount\ConsoleLoader\obj\Debug\ConsoleLoader.csprojResolveAssemblyReference.cache
+E:\C#\Discount\ConsoleLoader\obj\Debug\ConsoleLoader.exe
+E:\C#\Discount\ConsoleLoader\obj\Debug\ConsoleLoader.pdb
+E:\C#\Discount\ConsoleLoader\bin\Debug\Model.dll
+E:\C#\Discount\ConsoleLoader\bin\Debug\Model.pdb
