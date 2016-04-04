@@ -40,3 +40,17 @@ E:\Dropbox\Discount\View\obj\Debug\View.CreateRowForm.resources
 E:\Dropbox\Discount\View\obj\Debug\View.MainForm.resources
 E:\Dropbox\Discount\View\obj\Debug\View.Properties.Resources.resources
 E:\Dropbox\Discount\View\obj\Debug\View.csproj.GenerateResource.Cache
+E:\git-reps\discount\View\bin\Debug\View.exe.config
+E:\git-reps\discount\View\obj\Debug\View.exe
+E:\git-reps\discount\View\obj\Debug\View.pdb
+E:\git-reps\discount\View\bin\Debug\View.exe
+E:\git-reps\discount\View\bin\Debug\View.pdb
+E:\git-reps\discount\View\bin\Debug\Model.dll
+E:\git-reps\discount\View\bin\Debug\Newtonsoft.Json.dll
+E:\git-reps\discount\View\bin\Debug\Model.pdb
+E:\git-reps\discount\View\bin\Debug\Newtonsoft.Json.xml
+E:\git-reps\discount\View\obj\Debug\View.csprojResolveAssemblyReference.cache
+E:\git-reps\discount\View\obj\Debug\View.CreateRowForm.resources
+E:\git-reps\discount\View\obj\Debug\View.MainForm.resources
+E:\git-reps\discount\View\obj\Debug\View.Properties.Resources.resources
+E:\git-reps\discount\View\obj\Debug\View.csproj.GenerateResource.Cache

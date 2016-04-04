@@ -196,7 +196,7 @@
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Name = "CreateRowForm";
-            this.Text = "CreateRow";
+            this.Text = "Создание новой скидки";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CreateRowForm_FormClosed);
             this.Load += new System.EventHandler(this.CreateRowForm_Load);
             this.percentDiscountGroupBox.ResumeLayout(false);
