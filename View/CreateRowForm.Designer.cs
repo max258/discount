@@ -1,6 +1,6 @@
 ﻿namespace View
 {
-    partial class CreateRowForm
+    partial class CreateForm
     {
         /// <summary>
         /// Required designer variable.
@@ -48,7 +48,7 @@
             // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(47, 293);
+            this.okButton.Location = new System.Drawing.Point(45, 224);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 7;
@@ -58,7 +58,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(133, 293);
+            this.cancelButton.Location = new System.Drawing.Point(131, 224);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 8;
@@ -94,9 +94,9 @@
             this.percentDiscountGroupBox.Controls.Add(this.percentTextBox);
             this.percentDiscountGroupBox.Controls.Add(this.label5);
             this.percentDiscountGroupBox.Controls.Add(this.label4);
-            this.percentDiscountGroupBox.Location = new System.Drawing.Point(12, 98);
+            this.percentDiscountGroupBox.Location = new System.Drawing.Point(14, 100);
             this.percentDiscountGroupBox.Name = "percentDiscountGroupBox";
-            this.percentDiscountGroupBox.Size = new System.Drawing.Size(232, 100);
+            this.percentDiscountGroupBox.Size = new System.Drawing.Size(234, 100);
             this.percentDiscountGroupBox.TabIndex = 14;
             this.percentDiscountGroupBox.TabStop = false;
             this.percentDiscountGroupBox.Text = "Percent Discount";
@@ -106,14 +106,14 @@
             // 
             this.percentDiscountCategoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.percentDiscountCategoryComboBox.FormattingEnabled = true;
-            this.percentDiscountCategoryComboBox.Location = new System.Drawing.Point(94, 53);
+            this.percentDiscountCategoryComboBox.Location = new System.Drawing.Point(94, 57);
             this.percentDiscountCategoryComboBox.Name = "percentDiscountCategoryComboBox";
             this.percentDiscountCategoryComboBox.Size = new System.Drawing.Size(121, 21);
             this.percentDiscountCategoryComboBox.TabIndex = 5;
             // 
             // percentTextBox
             // 
-            this.percentTextBox.Location = new System.Drawing.Point(94, 25);
+            this.percentTextBox.Location = new System.Drawing.Point(94, 24);
             this.percentTextBox.Name = "percentTextBox";
             this.percentTextBox.Size = new System.Drawing.Size(42, 20);
             this.percentTextBox.TabIndex = 4;
@@ -121,7 +121,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(18, 61);
+            this.label5.Location = new System.Drawing.Point(18, 60);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(49, 13);
             this.label5.TabIndex = 1;
@@ -130,7 +130,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(18, 28);
+            this.label4.Location = new System.Drawing.Point(18, 24);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 13);
             this.label4.TabIndex = 0;
@@ -142,9 +142,9 @@
             this.certificateDiscountGroupBox.Controls.Add(this.sumTextBox);
             this.certificateDiscountGroupBox.Controls.Add(this.label7);
             this.certificateDiscountGroupBox.Controls.Add(this.label6);
-            this.certificateDiscountGroupBox.Location = new System.Drawing.Point(12, 100);
+            this.certificateDiscountGroupBox.Location = new System.Drawing.Point(14, 100);
             this.certificateDiscountGroupBox.Name = "certificateDiscountGroupBox";
-            this.certificateDiscountGroupBox.Size = new System.Drawing.Size(232, 100);
+            this.certificateDiscountGroupBox.Size = new System.Drawing.Size(234, 100);
             this.certificateDiscountGroupBox.TabIndex = 14;
             this.certificateDiscountGroupBox.TabStop = false;
             this.certificateDiscountGroupBox.Text = "Certificate Discount";
@@ -184,18 +184,18 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "Sum";
             // 
-            // CreateRowForm
+            // CreateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(264, 354);
+            this.ClientSize = new System.Drawing.Size(561, 275);
             this.Controls.Add(this.percentDiscountGroupBox);
             this.Controls.Add(this.certificateDiscountGroupBox);
             this.Controls.Add(this.certificateRadioButton);
             this.Controls.Add(this.percentRadioButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
-            this.Name = "CreateRowForm";
+            this.Name = "CreateForm";
             this.Text = "Создание новой скидки";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CreateRowForm_FormClosed);
             this.Load += new System.EventHandler(this.CreateRowForm_Load);

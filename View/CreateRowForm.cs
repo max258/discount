@@ -4,7 +4,7 @@ using Model;
 
 namespace View
 {
-    public partial class CreateRowForm : Form
+    public partial class CreateForm : Form
     {
 
         private IDiscount _discount;
@@ -38,7 +38,7 @@ namespace View
             set { _good = value; }
         }
 
-        public CreateRowForm()
+        public CreateForm()
         {
             InitializeComponent();
             percentDiscountCategoryComboBox.DataSource = Enum.GetValues(typeof (GoodCategory));
