@@ -188,7 +188,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(561, 275);
+            this.ClientSize = new System.Drawing.Size(255, 275);
             this.Controls.Add(this.percentDiscountGroupBox);
             this.Controls.Add(this.certificateDiscountGroupBox);
             this.Controls.Add(this.certificateRadioButton);
@@ -196,7 +196,7 @@
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Name = "CreateForm";
-            this.Text = "Создание новой скидки";
+            this.Text = "New discount";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CreateRowForm_FormClosed);
             this.Load += new System.EventHandler(this.CreateRowForm_Load);
             this.percentDiscountGroupBox.ResumeLayout(false);

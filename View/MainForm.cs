@@ -194,7 +194,7 @@ namespace View
             if (discountsDataGridView.CurrentRow != null)
             {
                 
-                var result = MessageBox.Show("Вы действительно хотите удалить скидку из списка?", "Внимание!", MessageBoxButtons.YesNo);
+                var result = MessageBox.Show("Are you sure you want to remove discount?", "Warning!", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
                     if (_discountList.Count == 1)
@@ -241,8 +241,8 @@ namespace View
         {
             if (_goodList.Count != 0 || _discountList.Count != 0)
             {
-                var result = MessageBox.Show("Вы действительно хотите выйти? Все несохраненные изменения будут потеряны!",
-                "Внимание!", MessageBoxButtons.YesNo);
+                var result = MessageBox.Show("Are you sure you want to exit? All unsaved changes will be lost!",
+                "Warning!", MessageBoxButtons.YesNo);
                 if (result == DialogResult.No)
                 {
                     e.Cancel = true;
@@ -257,8 +257,8 @@ namespace View
         {
             if (_goodList.Count != 0 || _discountList.Count != 0)
             {
-                var result = MessageBox.Show("Создать новую базу данных? Все несохраненные изменения будут потеряны!",
-                    "Внимание!", MessageBoxButtons.YesNo);
+                var result = MessageBox.Show("Are you sure you want to create new Database? All unsaved changes will be lost!",
+                    "Warning!", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
                     _goodList.Clear();
@@ -297,7 +297,7 @@ namespace View
                         serializer.Serialize(writer, _discountList);
                     }
                 }
-                MessageBox.Show("Список скидок сохранен.");
+                MessageBox.Show("List of discounts has been saved.");
             }
         }
 

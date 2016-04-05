@@ -81,26 +81,6 @@ namespace View
             }
         }
 
-        /// <summary>
-        /// Изменение товара
-        /// </summary>
-        void ModifyGood()
-        {
-            if (_good == null)
-            {
-                return;
-            }
-            else
-            {
-                certificateRadioButton.Checked = false;
-                percentRadioButton.Checked = false;
-                percentDiscountGroupBox.Visible = false;
-                certificateDiscountGroupBox.Visible = false;
-
-                var good = _good;
-            }
-        }
-
         private void cancelButton_Click(object sender, EventArgs e)
         {
             Close();
@@ -113,7 +93,7 @@ namespace View
         {
             try
             {
-                if (percentRadioButton.Checked)
+                if (percentRadioButton.Checked) // Добавление процентной скидки
                 {
                     var percent = Convert.ToInt32(percentTextBox.Text);
                     GoodCategory category;
@@ -122,7 +102,7 @@ namespace View
                     _discountCount++;
                     Close();
                 }
-                if (certificateRadioButton.Checked)
+                if (certificateRadioButton.Checked) // Добавление скидки по сертификату
                 {
                     var sum = Convert.ToInt32(sumTextBox.Text);
                     GoodCategory category;
@@ -140,8 +120,7 @@ namespace View
             catch (ArgumentException exception)
             {
                 MessageBox.Show(exception.Message);
-            }
-            
+            }           
         }
 
 
@@ -178,7 +157,6 @@ namespace View
         private void CreateRowForm_Load(object sender, EventArgs e)
         {
             ModifyDiscount();
-            ModifyGood();
         }
     }
 }
