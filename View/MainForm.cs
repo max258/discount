@@ -17,7 +17,7 @@ namespace View
         private List<IDiscount> _discountList = new List<IDiscount>();  // Список скидок
         private List<Good> _goodList = new List<Good>();                // Список товаров
 
-        private CreateRowForm _createForm = new CreateRowForm();        
+        private CreateForm _createForm = new CreateForm();        
 
         public MainForm()
         {
@@ -33,7 +33,7 @@ namespace View
             ////////////////////////////////////////////////////////////
             // Таблица скидок
             ////////////////////////////////////////////////////////////
-            DataGridView.DataSource = _discountDataTable;
+            discountsDataGridView.DataSource = _discountDataTable;
 
             // Идентификатор скидки
             var column = new DataColumn("ID")
@@ -43,6 +43,7 @@ namespace View
                 ReadOnly = true
             };
             _discountDataTable.Columns.Add(column);
+            
 
             // Тип скидки
             column = new DataColumn("Type")
@@ -62,10 +63,18 @@ namespace View
             };
             _discountDataTable.Columns.Add(column);
 
+            // Изменение ширины столбцов
+            DataGridViewColumn gridColumn = discountsDataGridView.Columns[0];
+            gridColumn.Width = 30;
+            gridColumn = discountsDataGridView.Columns[1];
+            gridColumn.Width = 60;
+            gridColumn = discountsDataGridView.Columns[2];
+            gridColumn.Width = 110;
+
             ////////////////////////////////////////////////////////////
             // Таблица товаров
             ////////////////////////////////////////////////////////////
-            dataGridView1.DataSource = _goodDataTable;
+            goodsDataGridView.DataSource = _goodDataTable;
 
             // Идентификатор товара
             column = new DataColumn("ID")
@@ -103,6 +112,16 @@ namespace View
             };
             _goodDataTable.Columns.Add(column);
 
+            // Изменение ширины столбцов
+            gridColumn = goodsDataGridView.Columns[0];
+            gridColumn.Width = 30;
+            gridColumn = goodsDataGridView.Columns[1];
+            gridColumn.Width = 100;
+            gridColumn = goodsDataGridView.Columns[2];
+            gridColumn.Width = 60;
+            gridColumn = goodsDataGridView.Columns[3];
+            gridColumn.Width = 60;
+
         }
 
         /// <summary>
@@ -120,11 +139,11 @@ namespace View
             }
 
             FillTheTable();
-            DataGridView.Update();
+            discountsDataGridView.Update();
         }
 
         /// <summary>
-        /// Заполнение таблицы на экране
+        /// Заполнение таблицы скидок
         /// </summary>
         private void FillTheTable()
         {
@@ -152,15 +171,18 @@ namespace View
         /// </summary>
         private void ModifyButton_Click(object sender, EventArgs e)
         {
-                _createForm.Discount = _discountList[Convert.ToInt32(DataGridView.CurrentRow.Cells[0].Value)];
+            if (discountsDataGridView.CurrentRow != null)
+            {
+                _createForm.Discount = _discountList[Convert.ToInt32(discountsDataGridView.CurrentRow.Cells[0].Value)];
                 _createForm.ShowDialog();
-                _discountList[Convert.ToInt32(DataGridView.CurrentRow.Cells[0].Value)] = _createForm.Discount;
+                _discountList[Convert.ToInt32(discountsDataGridView.CurrentRow.Cells[0].Value)] = _createForm.Discount;
                 foreach (var discount in _discountList)
                 {
                     discount.Id = _discountList.IndexOf(discount);
                 }
                 FillTheTable();
                 _createForm.Discount = null;
+            }
         }
 
         /// <summary>
@@ -169,24 +191,46 @@ namespace View
         private void RemoveButton_Click(object sender, EventArgs e)
         {
             // Удаление скидки
-            var result = MessageBox.Show("Вы действительно хотите удалить скидку из списка?", "Внимание!", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
+            if (discountsDataGridView.CurrentRow != null)
             {
-                if (_discountList.Count == 1)
+                
+                var result = MessageBox.Show("Are you sure you want to remove discount?", "Warning!", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
                 {
-                    _discountList.Clear();
-                    _createForm.DiscountCount = 0;
-                }
-                else
-                {
-                    _discountList.RemoveAt(Convert.ToInt32(DataGridView.CurrentRow.Cells[0].Value));
-                    _createForm.DiscountCount--;
-                    foreach (var discount in _discountList)
+                    if (_discountList.Count == 1)
                     {
-                        discount.Id = _discountList.IndexOf(discount);
+                        _discountList.Clear();
+                        _createForm.DiscountCount = 0;
                     }
+                    else
+                    {
+                        _discountList.RemoveAt(Convert.ToInt32(discountsDataGridView.CurrentRow.Cells[0].Value));
+                        _createForm.DiscountCount--;
+                        foreach (var discount in _discountList)
+                        {
+                            discount.Id = _discountList.IndexOf(discount);
+                        }
+                    }
+                    FillTheTable();
                 }
-                FillTheTable();
+            }            
+        }
+
+        // TODO: запретить многократное применение одной и той же скидки.
+        /// <summary>
+        /// Применение скидки к товару  
+        /// </summary>
+        private void applyButton_Click(object sender, EventArgs e)
+        {
+            if (discountsDataGridView.CurrentRow != null && goodsDataGridView.CurrentRow != null)
+            {
+                if (_discountList[Convert.ToInt32(discountsDataGridView.CurrentRow.Cells[0].Value)].Category == _goodList[Convert.ToInt32(goodsDataGridView.CurrentRow.Cells[0].Value)].Category) // Сравнение категорий
+                {
+                    var good = _goodList[Convert.ToInt32(goodsDataGridView.CurrentRow.Cells[0].Value)];
+                    var discount = _discountList[Convert.ToInt32(discountsDataGridView.CurrentRow.Cells[0].Value)].GetDiscount(good);
+                    _goodList[Convert.ToInt32(goodsDataGridView.CurrentRow.Cells[0].Value)].Cost = good.Cost - discount;
+                    FillGoodsTable();
+                }
             }
         }
 
@@ -197,8 +241,8 @@ namespace View
         {
             if (_goodList.Count != 0 || _discountList.Count != 0)
             {
-                var result = MessageBox.Show("Вы действительно хотите выйти? Все несохраненные изменения будут потеряны!",
-                "Внимание!", MessageBoxButtons.YesNo);
+                var result = MessageBox.Show("Are you sure you want to exit? All unsaved changes will be lost!",
+                "Warning!", MessageBoxButtons.YesNo);
                 if (result == DialogResult.No)
                 {
                     e.Cancel = true;
@@ -213,8 +257,8 @@ namespace View
         {
             if (_goodList.Count != 0 || _discountList.Count != 0)
             {
-                var result = MessageBox.Show("Создать новую базу данных? Все несохраненные изменения будут потеряны!",
-                    "Внимание!", MessageBoxButtons.YesNo);
+                var result = MessageBox.Show("Are you sure you want to create new Database? All unsaved changes will be lost!",
+                    "Warning!", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
                     _goodList.Clear();
@@ -253,7 +297,7 @@ namespace View
                         serializer.Serialize(writer, _discountList);
                     }
                 }
-                MessageBox.Show("Список скидок сохранен.");
+                MessageBox.Show("List of discounts has been saved.");
             }
         }
 
@@ -369,21 +413,6 @@ namespace View
             }
             _discountList.Add(randomDiscount);
             FillTheTable();
-        }
-
-        // TODO: запретить многократное применение одной и той же скидки.
-        /// <summary>
-        /// Применение скидки к товару  
-        /// </summary>
-        private void applyButton_Click(object sender, EventArgs e)
-        {
-            if (_discountList[Convert.ToInt32(DataGridView.CurrentRow.Cells[0].Value)].Category == _goodList[Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value)].Category) // Сравнение категорий
-            { 
-                var good = _goodList[Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value)];
-                var discount = _discountList[Convert.ToInt32(DataGridView.CurrentRow.Cells[0].Value)].GetDiscount(good);
-                _goodList[Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value)].Cost = good.Cost - discount;
-                FillGoodsTable();
-            }
         }
     }
 }
