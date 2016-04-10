@@ -17,7 +17,7 @@ namespace View
         private List<IDiscount> _discountList = new List<IDiscount>();  // Список скидок
         private List<Good> _goodList = new List<Good>();                // Список товаров
 
-        private CreateForm _createForm = new CreateForm();        
+        private CreateForm _createForm = new CreateForm();     
 
         public MainForm()
         {
@@ -26,7 +26,7 @@ namespace View
         }
 
         /// <summary>
-        /// Создание таблицы
+        /// Создание таблиц
         /// </summary>
         private void CreateDataTable()
         {
@@ -131,7 +131,7 @@ namespace View
         {
             // Вызов формы создания
             _createForm.ShowDialog();
-            // Добавление скидки
+            // Добавление скидки, хранящейся в экземпляре формы создания
             if (_createForm.Discount != null)
             {
                 _discountList.Add(_createForm.Discount);
@@ -161,7 +161,6 @@ namespace View
             _goodDataTable.Rows.Clear();
             foreach (var good in _goodList)
             {
-
                 _goodDataTable.Rows.Add(good.Id, good.Name, String.Format("{0:0.00}", good.Cost), good.Category);
             }
         }
@@ -193,7 +192,6 @@ namespace View
             // Удаление скидки
             if (discountsDataGridView.CurrentRow != null)
             {
-                
                 var result = MessageBox.Show("Are you sure you want to remove discount?", "Warning!", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
@@ -216,22 +214,38 @@ namespace View
             }            
         }
 
-        // TODO: запретить многократное применение одной и той же скидки.
         /// <summary>
         /// Применение скидки к товару  
         /// </summary>
         private void applyButton_Click(object sender, EventArgs e)
         {
+            //if (discountsDataGridView.CurrentRow != null && goodsDataGridView.CurrentRow != null)
+            //{
+            //    if (_discountList[Convert.ToInt32(discountsDataGridView.CurrentRow.Cells[0].Value)].Category == _goodList[Convert.ToInt32(goodsDataGridView.CurrentRow.Cells[0].Value)].Category) // Сравнение категорий
+            //    {
+            //        var good = _goodList[Convert.ToInt32(goodsDataGridView.CurrentRow.Cells[0].Value)];
+            //        var discount = _discountList[Convert.ToInt32(discountsDataGridView.CurrentRow.Cells[0].Value)].GetDiscount(good);
+            //        _goodList[Convert.ToInt32(goodsDataGridView.CurrentRow.Cells[0].Value)].Cost = good.Cost - discount;
+            //        FillGoodsTable();
+            //    }
+            //}
             if (discountsDataGridView.CurrentRow != null && goodsDataGridView.CurrentRow != null)
             {
-                if (_discountList[Convert.ToInt32(discountsDataGridView.CurrentRow.Cells[0].Value)].Category == _goodList[Convert.ToInt32(goodsDataGridView.CurrentRow.Cells[0].Value)].Category) // Сравнение категорий
+                double sumWithDiscount = 0;
+                foreach (var good in _goodList)
                 {
-                    var good = _goodList[Convert.ToInt32(goodsDataGridView.CurrentRow.Cells[0].Value)];
-                    var discount = _discountList[Convert.ToInt32(discountsDataGridView.CurrentRow.Cells[0].Value)].GetDiscount(good);
-                    _goodList[Convert.ToInt32(goodsDataGridView.CurrentRow.Cells[0].Value)].Cost = good.Cost - discount;
-                    FillGoodsTable();
+                    foreach (var discount in _discountList)
+                    {
+                        sumWithDiscount += discount.GetDiscount(good);
+                        good.Cost = good.Cost - discount.GetDiscount(good);
+                    }
                 }
+                sumCostWithDiscountTextBox.Text = (Convert.ToDouble(sumCostTextBox.Text) - sumWithDiscount).ToString();
+                _goodList.Clear();
+                sumCostTextBox.Text = "";
+                FillGoodsTable();
             }
+            
         }
 
         /// <summary>
@@ -265,6 +279,7 @@ namespace View
                     _discountList.Clear();
                     FillTheTable();
                     FillGoodsTable();
+                    this.Text = "Discount System";
                 }
             }
         }
@@ -330,10 +345,13 @@ namespace View
                     {
                         _discountList = deserializer.Deserialize<List<IDiscount>>(reader);
                     }
+                    this.Text = Path.GetFileNameWithoutExtension(openFileDialog.FileName) + " - Discount System";
                 }
             }
+            _createForm.DiscountCount = _discountList.Count;
             FillTheTable();
         }
+
 
         //-----------------------------------------------------------------------------------------
         // Случайные данные
@@ -411,8 +429,21 @@ namespace View
                     randomDiscount = new CertificateDiscount(_discountList.Count , sum, category);
                     break;
             }
+            _createForm.DiscountCount++;
             _discountList.Add(randomDiscount);
             FillTheTable();
+        }
+
+        // Суммарная стоимость товаров
+        private void goodsDataGridView_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            double sum = 0;
+            foreach (var good in _goodList)
+            {
+                
+                sum += good.Cost;
+            }
+            sumCostTextBox.Text = sum.ToString();
         }
     }
 }

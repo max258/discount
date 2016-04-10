@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,6 +45,10 @@
             this.applyButton = new System.Windows.Forms.Button();
             this.discountsGroupBox = new System.Windows.Forms.GroupBox();
             this.goodsGroupBox = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.sumCostWithDiscountTextBox = new System.Windows.Forms.TextBox();
+            this.sumCostTextBox = new System.Windows.Forms.TextBox();
             this.menuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.discountsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
@@ -58,7 +63,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(563, 24);
+            this.menuStrip2.Size = new System.Drawing.Size(545, 24);
             this.menuStrip2.TabIndex = 1;
             this.menuStrip2.Text = "menuStrip2";
             // 
@@ -100,7 +105,8 @@
             this.discountsDataGridView.AllowUserToResizeColumns = false;
             this.discountsDataGridView.AllowUserToResizeRows = false;
             this.discountsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.discountsDataGridView.Location = new System.Drawing.Point(9, 25);
+            this.discountsDataGridView.Location = new System.Drawing.Point(6, 25);
+            this.discountsDataGridView.MultiSelect = false;
             this.discountsDataGridView.Name = "discountsDataGridView";
             this.discountsDataGridView.RowHeadersVisible = false;
             this.discountsDataGridView.Size = new System.Drawing.Size(220, 311);
@@ -118,7 +124,7 @@
             // 
             // ModifyButton
             // 
-            this.ModifyButton.Location = new System.Drawing.Point(87, 347);
+            this.ModifyButton.Location = new System.Drawing.Point(79, 347);
             this.ModifyButton.Name = "ModifyButton";
             this.ModifyButton.Size = new System.Drawing.Size(64, 23);
             this.ModifyButton.TabIndex = 4;
@@ -128,7 +134,7 @@
             // 
             // RemoveButton
             // 
-            this.RemoveButton.Location = new System.Drawing.Point(165, 347);
+            this.RemoveButton.Location = new System.Drawing.Point(149, 347);
             this.RemoveButton.Name = "RemoveButton";
             this.RemoveButton.Size = new System.Drawing.Size(64, 23);
             this.RemoveButton.TabIndex = 5;
@@ -143,7 +149,7 @@
             // 
             // randomGoodButton
             // 
-            this.randomGoodButton.Location = new System.Drawing.Point(36, 348);
+            this.randomGoodButton.Location = new System.Drawing.Point(6, 347);
             this.randomGoodButton.Name = "randomGoodButton";
             this.randomGoodButton.Size = new System.Drawing.Size(98, 23);
             this.randomGoodButton.TabIndex = 6;
@@ -153,7 +159,7 @@
             // 
             // randomDiscountButton
             // 
-            this.randomDiscountButton.Location = new System.Drawing.Point(74, 377);
+            this.randomDiscountButton.Location = new System.Drawing.Point(9, 377);
             this.randomDiscountButton.Name = "randomDiscountButton";
             this.randomDiscountButton.Size = new System.Drawing.Size(98, 23);
             this.randomDiscountButton.TabIndex = 7;
@@ -169,14 +175,16 @@
             this.goodsDataGridView.AllowUserToResizeRows = false;
             this.goodsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.goodsDataGridView.Location = new System.Drawing.Point(6, 25);
+            this.goodsDataGridView.MultiSelect = false;
             this.goodsDataGridView.Name = "goodsDataGridView";
             this.goodsDataGridView.RowHeadersVisible = false;
             this.goodsDataGridView.Size = new System.Drawing.Size(270, 311);
             this.goodsDataGridView.TabIndex = 8;
+            this.goodsDataGridView.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.goodsDataGridView_RowsAdded);
             // 
             // applyButton
             // 
-            this.applyButton.Location = new System.Drawing.Point(144, 348);
+            this.applyButton.Location = new System.Drawing.Point(110, 347);
             this.applyButton.Name = "applyButton";
             this.applyButton.Size = new System.Drawing.Size(99, 23);
             this.applyButton.TabIndex = 9;
@@ -193,32 +201,69 @@
             this.discountsGroupBox.Controls.Add(this.randomDiscountButton);
             this.discountsGroupBox.Location = new System.Drawing.Point(12, 27);
             this.discountsGroupBox.Name = "discountsGroupBox";
-            this.discountsGroupBox.Size = new System.Drawing.Size(238, 406);
+            this.discountsGroupBox.Size = new System.Drawing.Size(233, 454);
             this.discountsGroupBox.TabIndex = 10;
             this.discountsGroupBox.TabStop = false;
             this.discountsGroupBox.Text = "Discounts";
             // 
             // goodsGroupBox
             // 
+            this.goodsGroupBox.Controls.Add(this.label2);
+            this.goodsGroupBox.Controls.Add(this.label1);
+            this.goodsGroupBox.Controls.Add(this.sumCostWithDiscountTextBox);
+            this.goodsGroupBox.Controls.Add(this.sumCostTextBox);
             this.goodsGroupBox.Controls.Add(this.goodsDataGridView);
             this.goodsGroupBox.Controls.Add(this.randomGoodButton);
             this.goodsGroupBox.Controls.Add(this.applyButton);
-            this.goodsGroupBox.Location = new System.Drawing.Point(275, 27);
+            this.goodsGroupBox.Location = new System.Drawing.Point(251, 27);
             this.goodsGroupBox.Name = "goodsGroupBox";
-            this.goodsGroupBox.Size = new System.Drawing.Size(283, 406);
+            this.goodsGroupBox.Size = new System.Drawing.Size(283, 454);
             this.goodsGroupBox.TabIndex = 0;
             this.goodsGroupBox.TabStop = false;
             this.goodsGroupBox.Text = "Goods";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(138, 402);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(138, 13);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Summary cost with discount";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 402);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 13);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Summary cost";
+            // 
+            // sumCostWithDiscountTextBox
+            // 
+            this.sumCostWithDiscountTextBox.Location = new System.Drawing.Point(141, 418);
+            this.sumCostWithDiscountTextBox.Name = "sumCostWithDiscountTextBox";
+            this.sumCostWithDiscountTextBox.Size = new System.Drawing.Size(100, 20);
+            this.sumCostWithDiscountTextBox.TabIndex = 11;
+            // 
+            // sumCostTextBox
+            // 
+            this.sumCostTextBox.Location = new System.Drawing.Point(9, 418);
+            this.sumCostTextBox.Name = "sumCostTextBox";
+            this.sumCostTextBox.Size = new System.Drawing.Size(100, 20);
+            this.sumCostTextBox.TabIndex = 10;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(563, 445);
+            this.ClientSize = new System.Drawing.Size(545, 493);
             this.Controls.Add(this.goodsGroupBox);
             this.Controls.Add(this.discountsGroupBox);
             this.Controls.Add(this.menuStrip2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Discount System";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
@@ -229,6 +274,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.goodsDataGridView)).EndInit();
             this.discountsGroupBox.ResumeLayout(false);
             this.goodsGroupBox.ResumeLayout(false);
+            this.goodsGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -252,6 +298,10 @@
         private System.Windows.Forms.Button applyButton;
         private System.Windows.Forms.GroupBox goodsGroupBox;
         private System.Windows.Forms.GroupBox discountsGroupBox;
+        private System.Windows.Forms.TextBox sumCostWithDiscountTextBox;
+        private System.Windows.Forms.TextBox sumCostTextBox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }
 

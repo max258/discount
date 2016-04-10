@@ -41,6 +41,7 @@ namespace View
         public CreateForm()
         {
             InitializeComponent();
+            // Привязка перечисления в качестве источника для comnobox'ов
             percentDiscountCategoryComboBox.DataSource = Enum.GetValues(typeof (GoodCategory));
             certificateDiscountCategoryComboBox.DataSource = Enum.GetValues(typeof(GoodCategory));
         }
@@ -87,7 +88,7 @@ namespace View
         }
 
         /// <summary>
-        /// Добавление товара или скидки
+        /// Добавление скидки
         /// </summary>
         private void okButton_Click(object sender, EventArgs e)
         {
