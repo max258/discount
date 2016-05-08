@@ -12,3 +12,4 @@ E:\git-reps\discount\Model\bin\Debug\Model.dll
 E:\git-reps\discount\Model\bin\Debug\Model.pdb
 E:\git-reps\discount\Model\obj\Debug\Model.dll
 E:\git-reps\discount\Model\obj\Debug\Model.pdb
+E:\git-reps\discount\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache

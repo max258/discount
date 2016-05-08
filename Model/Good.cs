@@ -16,39 +16,27 @@ namespace Model
 
         private int _id;
 
+        /// <summary>
+        /// Номер товара
+        /// </summary>
         public int Id
         {
             get { return _id; }
-            set { _id = value; }
-        }
-
-        private double _cost; // Стоимость товара
-        private string _name;
-
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
-
-        public Good()
-        {
-            _id = 0;
-            _cost = 0;
-            _category = GoodCategory.Electronics;
-        }
-
-        public Good(int id, string name, int cost, GoodCategory category)
-        {
-            Id = id;
-            Name = name;
-            Cost = cost;
-            Category = category;
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Номер должен быть положительным!");
+                }
+                _id = value;
+            }
         }
 
         /// <summary>
         /// Стоимость товара
         /// </summary>
+        private double _cost;
+
         public double Cost
         {
             get { return _cost; }
@@ -61,5 +49,42 @@ namespace Model
                 _cost = value;
             }
         }
+        /// <summary>
+        /// Название товара
+        /// </summary>
+        private string _name;
+
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+
+        /// <summary>
+        /// Конструктор по умолчанию
+        /// </summary>
+        public Good()
+        {
+            _id = 0;
+            _cost = 0;
+            _category = GoodCategory.Electronics;
+        }
+
+        /// <summary>
+        /// Конструктор с параметрами
+        /// </summary>
+        /// <param name="id">Номер</param>
+        /// <param name="name">Название</param>
+        /// <param name="cost">Стоимость</param>
+        /// <param name="category">Категория</param>
+        public Good(int id, string name, double cost, GoodCategory category)
+        {
+            Id = id;
+            Name = name;
+            Cost = cost;
+            Category = category;
+        }
+
+
     }
 }

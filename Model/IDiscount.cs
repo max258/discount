@@ -23,6 +23,6 @@
         /// <returns> Возвращает размер скидки для данного товара </returns>
         double GetDiscount(Good good);
 
-        string FormDescription();
+        string GetDescription();
     }
 }

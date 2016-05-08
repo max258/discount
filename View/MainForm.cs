@@ -151,7 +151,7 @@ namespace View
             foreach (var discount in _discountList)
             {
                 var type = (discount is PercentDiscount) ? "Percent" : "Certificate";
-                _discountDataTable.Rows.Add(discount.Id, type, discount.FormDescription());
+                _discountDataTable.Rows.Add(discount.Id, type, discount.GetDescription());
             }
         }
 
@@ -425,7 +425,7 @@ namespace View
                     randomDiscount = new PercentDiscount(_discountList.Count , percent, category);
                     break;
                 case 1:
-                    int sum = random.Next(10000);
+                    double sum = random.Next(10000);
                     randomDiscount = new CertificateDiscount(_discountList.Count , sum, category);
                     break;
             }

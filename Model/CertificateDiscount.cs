@@ -14,17 +14,33 @@ namespace Model
 
         private GoodCategory _category;
 
+        /// <summary>
+        /// Номер скидки
+        /// </summary>
         private int _id;
 
         public int Id
         {
             get { return _id; }
-            set { _id = value; }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Номер должен быть положительным!");
+                }
+                _id = value;
+            }
         }
 
+        /// <summary>
+        /// Описание скидки
+        /// </summary>
         private string _description;
         public string Description { get; set; }
 
+        /// <summary>
+        /// Конструктор по умолчанию
+        /// </summary>
         public CertificateDiscount()
         {
             _id = 0;
@@ -32,19 +48,25 @@ namespace Model
             _category = GoodCategory.Electronics;
         }
 
-        public CertificateDiscount(int id, int sum, GoodCategory category)
+        /// <summary>
+        /// Конструктор с параметрами
+        /// </summary>
+        /// <param name="id">Номер</param>
+        /// <param name="sum">Сумма</param>
+        /// <param name="category">Категория</param>
+        public CertificateDiscount(int id, double sum, GoodCategory category)
         {
             Id = id;
             Sum = sum;
             Category = category;
         }
        
-        private int _sum; // Сумма, указанная в сертификате, которая вычитается из стоимости товара
+        private double _sum; // Сумма, указанная в сертификате, которая вычитается из стоимости товара
 
         /// <summary>
         /// Сумма, указанная в сертификате, которая вычитается из стоимости товара
         /// </summary>
-        public int Sum
+        public double Sum
         {
             get { return _sum; }
             set
@@ -75,7 +97,11 @@ namespace Model
             return good.Cost;   // Если сумма покрывает стоимость товара полностью
         }
 
-        public string FormDescription()
+        /// <summary>
+        /// Получить описание скидки
+        /// </summary>
+        /// <returns></returns>
+        public string GetDescription()
         {
             _description = _sum + " руб. " + Category;
             return _description;

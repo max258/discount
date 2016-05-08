@@ -8,6 +8,12 @@ namespace View
     {
 
         private IDiscount _discount;
+        public IDiscount Discount
+        {
+            get { return _discount; }
+            set { _discount = value; }
+        }
+
         private Good _good;
 
         private int _discountCount = 0;
@@ -26,11 +32,6 @@ namespace View
             set { _goodCount = value; }
         }
 
-        public IDiscount Discount
-        {
-            get { return _discount; }
-            set { _discount = value; }
-        }
 
         public Good Good
         {
@@ -105,7 +106,7 @@ namespace View
                 }
                 if (certificateRadioButton.Checked) // Добавление скидки по сертификату
                 {
-                    var sum = Convert.ToInt32(sumTextBox.Text);
+                    var sum = Convert.ToDouble(sumTextBox.Text);
                     GoodCategory category;
                     Enum.TryParse<GoodCategory>(certificateDiscountCategoryComboBox.SelectedValue.ToString(),
                         out category);
