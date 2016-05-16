@@ -54,3 +54,6 @@ E:\git-reps\discount\View\obj\Debug\View.MainForm.resources
 E:\git-reps\discount\View\obj\Debug\View.Properties.Resources.resources
 E:\git-reps\discount\View\obj\Debug\View.csproj.GenerateResource.Cache
 E:\git-reps\discount\View\obj\Debug\View.CreateForm.resources
+E:\git-reps\discount\View\obj\Debug\View.CertificateDiscountControl.resources
+E:\git-reps\discount\View\obj\Debug\View.DiscountControl.resources
+E:\git-reps\discount\View\obj\Debug\View.PercentDiscountControl.resources

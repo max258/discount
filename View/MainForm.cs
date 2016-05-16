@@ -12,12 +12,12 @@ namespace View
     public partial class MainForm : Form
     {
         private DataTable _discountDataTable = new DataTable(); // Таблица под скидки
-        private DataTable _goodDataTable = new DataTable();     // Таблица под товары
+        private DataTable _goodDataTable = new DataTable(); // Таблица под товары
 
-        private List<IDiscount> _discountList = new List<IDiscount>();  // Список скидок
-        private List<Good> _goodList = new List<Good>();                // Список товаров
+        private List<IDiscount> _discountList = new List<IDiscount>(); // Список скидок
+        private List<Good> _goodList = new List<Good>(); // Список товаров
 
-        private CreateForm _createForm = new CreateForm();        
+        private CreateForm _createForm = new CreateForm();
 
         public MainForm()
         {
@@ -25,6 +25,7 @@ namespace View
             CreateDataTable();
         }
 
+#region Структура таблиц
         /// <summary>
         /// Создание таблицы
         /// </summary>
@@ -43,13 +44,13 @@ namespace View
                 ReadOnly = true
             };
             _discountDataTable.Columns.Add(column);
-            
+
 
             // Тип скидки
             column = new DataColumn("Type")
             {
                 Caption = "Type",
-                DataType = typeof (string),
+                DataType = typeof(string),
                 ReadOnly = true
             };
             _discountDataTable.Columns.Add(column);
@@ -89,7 +90,7 @@ namespace View
             column = new DataColumn("Name")
             {
                 Caption = "Name",
-                DataType = typeof (string),
+                DataType = typeof(string),
                 ReadOnly = true
             };
             _goodDataTable.Columns.Add(column);
@@ -123,6 +124,8 @@ namespace View
             gridColumn.Width = 60;
 
         }
+#endregion
+        
 
         /// <summary>
         /// Создание новой строки
@@ -216,7 +219,6 @@ namespace View
             }            
         }
 
-        // TODO: запретить многократное применение одной и той же скидки.
         /// <summary>
         /// Применение скидки к товару  
         /// </summary>
@@ -269,6 +271,17 @@ namespace View
             }
         }
 
+        private void discountsDataGridView_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (discountsDataGridView.CurrentRow != null)
+            {
+                string str = discountsDataGridView[0, discountsDataGridView.CurrentRow.Index].Value.ToString();
+                int id = Convert.ToInt32(discountsDataGridView[0, discountsDataGridView.CurrentRow.Index].Value.ToString());
+                discountControl1.Object = _discountList[id];
+            }
+        }
+
+#region Сериализация и десериализация
         //-----------------------------------------------------------------------------------------
         // Сериализация
         //-----------------------------------------------------------------------------------------
@@ -334,17 +347,14 @@ namespace View
             }
             FillTheTable();
         }
-
-        //-----------------------------------------------------------------------------------------
-        // Случайные данные
-        //-----------------------------------------------------------------------------------------
-
+#endregion
+#region Случайные данные
         // Данные для случайного заполнения строк
-        private string[] electronic = {"ASUS X550L","ZTE Nubia Z7", "IPhone 4S", "Nokia C6-01", "Nokia 3310", "OnePlus One"};
-        private string[] food = {"Bread", "Pepsi", "Milk", "Snickers", "Chicken", "Eggs"};
-        private string[] cosmetic = {"Red lipstic", "Black lipstic", "Blue hair dye", "Brown hair dye", "Perfume", "Nail polish" };
-        private string[] chemistry = {"Mr. Proper", "Soap", "Ariel", "Fairy", "Bref", "Domestos" };
-        private string[] clothes = {"Blue shirt", "Red dress", "Black skirt", "Grey jacket", "Jeans", "Black hat" };
+        private string[] electronic = { "ASUS X550L", "ZTE Nubia Z7", "IPhone 4S", "Nokia C6-01", "Nokia 3310", "OnePlus One" };
+        private string[] food = { "Bread", "Pepsi", "Milk", "Snickers", "Chicken", "Eggs" };
+        private string[] cosmetic = { "Red lipstic", "Black lipstic", "Blue hair dye", "Brown hair dye", "Perfume", "Nail polish" };
+        private string[] chemistry = { "Mr. Proper", "Soap", "Ariel", "Fairy", "Bref", "Domestos" };
+        private string[] clothes = { "Blue shirt", "Red dress", "Black skirt", "Grey jacket", "Jeans", "Black hat" };
 
         /// <summary>
         /// Создание случайного товара
@@ -360,31 +370,31 @@ namespace View
                     randomGood.Category = GoodCategory.Electronics;
                     randomGood.Name = electronic[random.Next(6)];
                     randomGood.Cost = random.Next(3000, 50000);
-                    randomGood.Id = _goodList.Count ;
+                    randomGood.Id = _goodList.Count;
                     break;
                 case 1:
                     randomGood.Category = GoodCategory.Food;
                     randomGood.Name = food[random.Next(6)];
                     randomGood.Cost = random.Next(50, 600);
-                    randomGood.Id = _goodList.Count ;
+                    randomGood.Id = _goodList.Count;
                     break;
                 case 2:
                     randomGood.Category = GoodCategory.Cosmetic;
                     randomGood.Name = cosmetic[random.Next(6)];
                     randomGood.Cost = random.Next(1000, 3000);
-                    randomGood.Id = _goodList.Count ;
+                    randomGood.Id = _goodList.Count;
                     break;
                 case 3:
                     randomGood.Category = GoodCategory.Chemistry;
                     randomGood.Name = chemistry[random.Next(6)];
                     randomGood.Cost = random.Next(50, 500);
-                    randomGood.Id = _goodList.Count ;
+                    randomGood.Id = _goodList.Count;
                     break;
                 case 4:
                     randomGood.Category = GoodCategory.Clothes;
                     randomGood.Name = clothes[random.Next(6)];
                     randomGood.Cost = random.Next(2000, 10000);
-                    randomGood.Id = _goodList.Count ;
+                    randomGood.Id = _goodList.Count;
                     break;
             }
             _goodList.Add(randomGood);
@@ -404,15 +414,17 @@ namespace View
             {
                 case 0:
                     int percent = random.Next(1, 100);
-                    randomDiscount = new PercentDiscount(_discountList.Count , percent, category);
+                    randomDiscount = new PercentDiscount(_discountList.Count, percent, category);
                     break;
                 case 1:
                     int sum = random.Next(10000);
-                    randomDiscount = new CertificateDiscount(_discountList.Count , sum, category);
+                    randomDiscount = new CertificateDiscount(_discountList.Count, sum, category);
                     break;
             }
             _discountList.Add(randomDiscount);
             FillTheTable();
         }
+#endregion
+        
     }
 }

@@ -6,3 +6,11 @@ E:\C#\Discount\ConsoleLoader\obj\Debug\ConsoleLoader.exe
 E:\C#\Discount\ConsoleLoader\obj\Debug\ConsoleLoader.pdb
 E:\C#\Discount\ConsoleLoader\bin\Debug\Model.dll
 E:\C#\Discount\ConsoleLoader\bin\Debug\Model.pdb
+E:\git-reps\discount\ConsoleLoader\bin\Debug\ConsoleLoader.exe.config
+E:\git-reps\discount\ConsoleLoader\bin\Debug\ConsoleLoader.exe
+E:\git-reps\discount\ConsoleLoader\bin\Debug\ConsoleLoader.pdb
+E:\git-reps\discount\ConsoleLoader\bin\Debug\Model.dll
+E:\git-reps\discount\ConsoleLoader\bin\Debug\Model.pdb
+E:\git-reps\discount\ConsoleLoader\obj\Debug\ConsoleLoader.csprojResolveAssemblyReference.cache
+E:\git-reps\discount\ConsoleLoader\obj\Debug\ConsoleLoader.exe
+E:\git-reps\discount\ConsoleLoader\obj\Debug\ConsoleLoader.pdb

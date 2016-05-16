@@ -44,6 +44,7 @@
             this.applyButton = new System.Windows.Forms.Button();
             this.discountsGroupBox = new System.Windows.Forms.GroupBox();
             this.goodsGroupBox = new System.Windows.Forms.GroupBox();
+            this.discountControl1 = new View.DiscountControl();
             this.menuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.discountsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
@@ -58,7 +59,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(563, 24);
+            this.menuStrip2.Size = new System.Drawing.Size(848, 24);
             this.menuStrip2.TabIndex = 1;
             this.menuStrip2.Text = "menuStrip2";
             // 
@@ -105,6 +106,7 @@
             this.discountsDataGridView.RowHeadersVisible = false;
             this.discountsDataGridView.Size = new System.Drawing.Size(220, 311);
             this.discountsDataGridView.TabIndex = 2;
+            this.discountsDataGridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.discountsDataGridView_RowEnter);
             // 
             // CreateRowButton
             // 
@@ -210,12 +212,20 @@
             this.goodsGroupBox.TabStop = false;
             this.goodsGroupBox.Text = "Goods";
             // 
+            // discountControl1
+            // 
+            this.discountControl1.Location = new System.Drawing.Point(564, 27);
+            this.discountControl1.Name = "discountControl1";
+            this.discountControl1.Size = new System.Drawing.Size(259, 160);
+            this.discountControl1.TabIndex = 11;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(563, 445);
+            this.ClientSize = new System.Drawing.Size(848, 437);
+            this.Controls.Add(this.discountControl1);
             this.Controls.Add(this.goodsGroupBox);
             this.Controls.Add(this.discountsGroupBox);
             this.Controls.Add(this.menuStrip2);
@@ -252,6 +262,7 @@
         private System.Windows.Forms.Button applyButton;
         private System.Windows.Forms.GroupBox goodsGroupBox;
         private System.Windows.Forms.GroupBox discountsGroupBox;
+        private DiscountControl discountControl1;
     }
 }
 
