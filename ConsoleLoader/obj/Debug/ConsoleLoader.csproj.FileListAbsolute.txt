@@ -14,5 +14,8 @@ E:\git-reps\discount\ConsoleLoader\bin\Debug\Model.pdb
 E:\git-reps\discount\ConsoleLoader\obj\Debug\ConsoleLoader.csprojResolveAssemblyReference.cache
 E:\git-reps\discount\ConsoleLoader\obj\Debug\ConsoleLoader.exe
 E:\git-reps\discount\ConsoleLoader\obj\Debug\ConsoleLoader.pdb
+<<<<<<< HEAD
 E:\git-reps\discount\ConsoleLoader\bin\Debug\nunit.framework.dll
 E:\git-reps\discount\ConsoleLoader\bin\Debug\nunit.framework.xml
+=======
+>>>>>>> development

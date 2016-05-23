@@ -16,13 +16,24 @@ namespace UnitTests.Model
         [TestCase(100, TestName = "Тестирование Sum при присваивании 100.")]
         [TestCase(2999.99, TestName = "Тестирование Sum при присваивании 2999.9.")]
         [TestCase(double.MaxValue, TestName = "Тестирование Sum при присваивании double.MaxValue.")]
-        [TestCase(0, ExpectedException = typeof(ArgumentException), TestName = "Тестирование Sum при присваивании 0.")]
-        [TestCase(-1, ExpectedException = typeof(ArgumentException), TestName = "Тестирование Sum при присваивании -1.")]
-        [TestCase(double.MinValue, ExpectedException = typeof(ArgumentException), TestName = "Тестирование Sum приприсваивании минимально допустимого числа.")]
+
         public void Sum_Test(double sum)
         {
             var certificateDiscount = new CertificateDiscount();
             certificateDiscount.Sum = sum;
+        }
+        [Test]
+        [TestCase(0, TestName = "Тестирование Sum при присваивании 0.")]
+        [TestCase(-0.01, TestName = "Тестирование Sum при присваивании -0.01.")]
+        [TestCase(-1, TestName = "Тестирование Sum при присваивании -1.")]
+        [TestCase(-1000, TestName = "Тестирование Sum при присваивании -1000.")]
+        [TestCase(double.MinValue, TestName = "Тестирование Sum приприсваивании минимально допустимого числа.")]
+
+        public void Percent_NegativeTest(double sum)
+        {
+            var certificateDiscount = new CertificateDiscount();
+
+            Assert.Throws(typeof(ArgumentException), () => { certificateDiscount.Sum = sum; });
         }
 
         /// <summary>
@@ -33,12 +44,18 @@ namespace UnitTests.Model
         [TestCase(1, TestName = "Тестирование Id при присваивании 1.")]
         [TestCase(100, TestName = "Тестирование Id при присваивании 100.")]
         [TestCase(int.MaxValue, TestName = "Тестирование Id при присваивании int.MaxValue.")]
-        [TestCase(-1, ExpectedException = typeof(ArgumentException), TestName = "Тестирование Id при присваивании -1.")]
-        [TestCase(int.MinValue, ExpectedException = typeof(ArgumentException), TestName = "Тестирование Id приприсваивании минимально допустимого целого числа.")]
         public void Id_Test(int id)
         {
             var certificateDiscount = new CertificateDiscount();
             certificateDiscount.Id = id;
+        }
+        [Test]
+        [TestCase(-1, TestName = "Тестирование Id при присваивании -1.")]
+        [TestCase(int.MinValue, TestName = "Тестирование Id приприсваивании минимально допустимого целого числа.")]
+        public void Id_NegativeTest(int id)
+        {
+            var certificateDiscount = new CertificateDiscount();
+            Assert.Throws(typeof(ArgumentException), () => { certificateDiscount.Id = id; });
         }
 
         /// <summary>

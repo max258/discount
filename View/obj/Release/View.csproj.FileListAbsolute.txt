@@ -1,0 +1,17 @@
+E:\git-reps\discount\View\bin\Release\View.exe.config
+E:\git-reps\discount\View\bin\Release\View.exe
+E:\git-reps\discount\View\bin\Release\View.pdb
+E:\git-reps\discount\View\bin\Release\Model.dll
+E:\git-reps\discount\View\bin\Release\Newtonsoft.Json.dll
+E:\git-reps\discount\View\bin\Release\Model.pdb
+E:\git-reps\discount\View\bin\Release\Newtonsoft.Json.xml
+E:\git-reps\discount\View\obj\Release\View.csprojResolveAssemblyReference.cache
+E:\git-reps\discount\View\obj\Release\View.CertificateDiscountControl.resources
+E:\git-reps\discount\View\obj\Release\View.CreateForm.resources
+E:\git-reps\discount\View\obj\Release\View.DiscountControl.resources
+E:\git-reps\discount\View\obj\Release\View.MainForm.resources
+E:\git-reps\discount\View\obj\Release\View.PercentDiscountControl.resources
+E:\git-reps\discount\View\obj\Release\View.Properties.Resources.resources
+E:\git-reps\discount\View\obj\Release\View.csproj.GenerateResource.Cache
+E:\git-reps\discount\View\obj\Release\View.exe
+E:\git-reps\discount\View\obj\Release\View.pdb

@@ -7,24 +7,45 @@ namespace UnitTests.Model
     [TestFixture]
     public class PercentDiscountTest
     {
+
+        private PercentDiscount percentDiscount;
+        [SetUp]
+        public void RunBeforeTests()
+        {
+            percentDiscount = new PercentDiscount();
+        }
+
+        [TearDown]
+        public void RunAfterTests()
+        {
+            percentDiscount = null;
+        }
         /// <summary>
         /// Тестирование присваивания процента скидке
         /// </summary>
         /// <param name="percent"></param>
         [Test]
         [TestCase(1, TestName = "Тестирование Percent при присваивании 1.")]
+        [TestCase(25, TestName = "Тестирование Percent при присваивании 25.")]
+        [TestCase(50, TestName = "Тестирование Percent при присваивании 50.")]
+        [TestCase(75, TestName = "Тестирование Percent при присваивании 75.")]
         [TestCase(100, TestName = "Тестирование Percent при присваивании 100.")]
-        [TestCase(101, ExpectedException = typeof(ArgumentException), TestName = "Тестирование Percent при присваивании 101.")]
-        [TestCase(200, ExpectedException = typeof(ArgumentException), TestName = "Тестирование Percent при присваивании 200.")]
-        [TestCase(0, ExpectedException = typeof(ArgumentException), TestName = "Тестирование Percent при присваивании 0.")]
-        [TestCase(-1, ExpectedException = typeof(ArgumentException), TestName = "Тестирование Percent при присваивании -1.")]
-        [TestCase(int.MinValue, ExpectedException = typeof(ArgumentException), TestName = "Тестирование Percent приприсваивании минимально допустимого целого числа.")]
+
         public void Percent_Test(int percent)
         {
-            var percentDiscount = new PercentDiscount();
             percentDiscount.Percent = percent;
         }
 
+        [Test]
+        [TestCase(101, TestName = "Тестирование Percent при присваивании 101.")]
+        [TestCase(200, TestName = "Тестирование Percent при присваивании 200.")]
+        [TestCase(0, TestName = "Тестирование Percent при присваивании 0.")]
+        [TestCase(-1, TestName = "Тестирование Percent при присваивании -1.")]
+        [TestCase(int.MinValue, TestName = "Тестирование Percent приприсваивании минимально допустимого целого числа.")]
+        public void Percent_NegativeTest(int percent)
+        {
+            Assert.Throws(typeof(ArgumentException), () => { percentDiscount.Percent = percent; });
+        }
         /// <summary>
         /// Тестирование расчета процентной скидки
         /// </summary>

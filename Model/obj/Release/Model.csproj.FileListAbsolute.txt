@@ -1,0 +1,5 @@
+E:\git-reps\discount\Model\bin\Release\Model.dll
+E:\git-reps\discount\Model\bin\Release\Model.pdb
+E:\git-reps\discount\Model\obj\Release\Model.csprojResolveAssemblyReference.cache
+E:\git-reps\discount\Model\obj\Release\Model.dll
+E:\git-reps\discount\Model\obj\Release\Model.pdb

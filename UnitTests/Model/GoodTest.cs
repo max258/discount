@@ -4,6 +4,7 @@ using NUnit.Framework;
 
 namespace UnitTests.Model
 {
+    [TestFixture]
     public class GoodTest
     {
         /// <summary>
@@ -12,14 +13,25 @@ namespace UnitTests.Model
         /// <param name="cost"></param>
         [Test]
         [TestCase(1, TestName = "Тестирование Cost при присваивании 1.")]
+        [TestCase(0.50, TestName = "Тестирование Cost при присваивании 0.50.")]
         [TestCase(100, TestName = "Тестирование Cost при присваивании 100.")]
+        [TestCase(1000, TestName = "Тестирование Cost при присваивании 1000.")]
+        [TestCase(9999.99, TestName = "Тестирование Cost при присваивании 9999.99.")]
         [TestCase(double.MaxValue, TestName = "Тестирование Cost при присваивании double.MaxValue.")]
-        [TestCase(-1, ExpectedException = typeof(ArgumentException), TestName = "Тестирование Cost при присваивании -1.")]
-        [TestCase(double.MinValue, ExpectedException = typeof(ArgumentException), TestName = "Тестирование Cost приприсваивании минимально допустимого числа.")]
+        
         public void Cost_Test(double cost)
         {
             var good = new Good();
             good.Cost = cost;
+        }
+        [Test]
+        [TestCase(-1, TestName = "Тестирование Cost при присваивании -1.")]
+        [TestCase(-0.01, TestName = "Тестирование Cost при присваивании -0.01.")]
+        [TestCase(double.MinValue, TestName = "Тестирование Cost при присваивании double.MinValue.")]
+        public void Cost_NegativeTest(double cost)
+        {
+            var good = new Good();
+            Assert.Throws(typeof(ArgumentException), () => { good.Cost = cost; });
         }
 
         /// <summary>
@@ -41,7 +53,10 @@ namespace UnitTests.Model
             Assert.IsInstanceOf(typeof(GoodCategory), category);
         }
 
-
+        /// <summary>
+        /// Тестирование присваивания названия
+        /// </summary>
+        /// <param name="name"></param>
         [Test]
         [TestCase("Nokia 3310", TestName = "Тестирование Name при присваивании строки.")]
         [TestCase("Snickers", TestName = "Тестирование Name при присваивании строки.")]
@@ -52,8 +67,5 @@ namespace UnitTests.Model
             var good = new Good();
             good.Name = name;
         }
-
     }
-
-
 }
