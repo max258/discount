@@ -56,7 +56,7 @@ namespace View
         public void Clear()
         {
             percentTextBox.Text = null;
-            percentDiscountCategoryComboBox.Text = null;
+            percentDiscountCategoryComboBox.Text = (GoodCategory.Electronics).ToString();
         }
     }
 }

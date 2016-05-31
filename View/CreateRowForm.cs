@@ -72,8 +72,6 @@ namespace View
             set { _discount = value; }
         }
 
-        private Good _good;
-
         private int _discountCount = 0;
 
         public int DiscountCount
@@ -84,17 +82,6 @@ namespace View
 
         private int _goodCount = 0;
 
-        public int GoodCount
-        {
-            get { return _goodCount; }
-            set { _goodCount = value; }
-        }
-
-        public Good Good
-        {
-            get { return _good; }
-            set { _good = value; }
-        }
         #endregion
     }
 }

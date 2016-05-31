@@ -47,8 +47,7 @@ namespace View
                     sumTextBox.ReadOnly = value;
                     certificateDiscountCategoryComboBox.Enabled = !value;
                 }
-            }
-            
+            }   
         }
 
         /// <summary>
@@ -56,7 +55,7 @@ namespace View
         /// </summary>
         public void Clear()
         {
-            certificateDiscountCategoryComboBox.Text = null;
+            certificateDiscountCategoryComboBox.Text = (GoodCategory.Electronics).ToString();
             sumTextBox.Text = null;
         }
     }
