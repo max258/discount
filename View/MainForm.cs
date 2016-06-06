@@ -181,15 +181,14 @@ namespace View
                     foreach (var discount in _discountList)
                     {
                         good.Cost = good.Cost - discount.GetDiscount(good);
-                        sumWithDiscount += discount.GetDiscount(good);
-                        FillGoodsTable();
                     }
+                    sumWithDiscount += good.Cost;
                 }
-                string finalSum = Convert.ToString(Convert.ToDouble(sumCostTextBox.Text) - sumWithDiscount);
-                sumCostWithDiscountTextBox.Text = String.Format("{0:0.00}", finalSum);
+                sumCostWithDiscountTextBox.Text = String.Format("{0:0.00}", sumWithDiscount);
                 //_goodList.Clear();
-                sumCostTextBox.Text = null;
+                FillGoodsTable();
                 FillTheTable();
+                sumCostTextBox.Text = null;
             }
         }
 

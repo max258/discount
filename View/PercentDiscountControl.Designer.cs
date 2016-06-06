@@ -41,14 +41,14 @@
             this.percentDiscountCategoryComboBox.Location = new System.Drawing.Point(86, 44);
             this.percentDiscountCategoryComboBox.Name = "percentDiscountCategoryComboBox";
             this.percentDiscountCategoryComboBox.Size = new System.Drawing.Size(121, 21);
-            this.percentDiscountCategoryComboBox.TabIndex = 5;
+            this.percentDiscountCategoryComboBox.TabIndex = 2;
             // 
             // percentTextBox
             // 
             this.percentTextBox.Location = new System.Drawing.Point(86, 11);
             this.percentTextBox.Name = "percentTextBox";
             this.percentTextBox.Size = new System.Drawing.Size(42, 20);
-            this.percentTextBox.TabIndex = 4;
+            this.percentTextBox.TabIndex = 1;
             // 
             // label5
             // 

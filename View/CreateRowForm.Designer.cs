@@ -28,19 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.discountControl1 = new View.DiscountControl();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.button = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.discountControl1 = new View.DiscountControl();
             this.SuspendLayout();
-            // 
-            // discountControl1
-            // 
-            this.discountControl1.Location = new System.Drawing.Point(9, 41);
-            this.discountControl1.Name = "discountControl1";
-            this.discountControl1.Size = new System.Drawing.Size(247, 197);
-            this.discountControl1.TabIndex = 9;
             // 
             // okButton
             // 
@@ -80,14 +73,24 @@
             this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // discountControl1
+            // 
+            this.discountControl1.Location = new System.Drawing.Point(9, 41);
+            this.discountControl1.Name = "discountControl1";
+            this.discountControl1.Object = null;
+            this.discountControl1.Size = new System.Drawing.Size(247, 197);
+            this.discountControl1.TabIndex = 9;
+            // 
             // CreateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(268, 295);
+            this.ClientSize = new System.Drawing.Size(254, 299);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.discountControl1);
+            this.MaximumSize = new System.Drawing.Size(270, 338);
+            this.MinimumSize = new System.Drawing.Size(270, 338);
             this.Name = "CreateForm";
             this.Text = "New discount";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CreateRowForm_FormClosed);

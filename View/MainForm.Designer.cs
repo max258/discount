@@ -111,7 +111,7 @@
             this.discountsDataGridView.Name = "discountsDataGridView";
             this.discountsDataGridView.RowHeadersVisible = false;
             this.discountsDataGridView.Size = new System.Drawing.Size(220, 311);
-            this.discountsDataGridView.TabIndex = 2;
+            this.discountsDataGridView.TabIndex = 1;
             this.discountsDataGridView.SelectionChanged += new System.EventHandler(this.discountsDataGridView_SelectionChanged);
             // 
             // CreateRowButton
@@ -119,7 +119,7 @@
             this.CreateRowButton.Location = new System.Drawing.Point(9, 347);
             this.CreateRowButton.Name = "CreateRowButton";
             this.CreateRowButton.Size = new System.Drawing.Size(64, 23);
-            this.CreateRowButton.TabIndex = 3;
+            this.CreateRowButton.TabIndex = 2;
             this.CreateRowButton.Text = "Create";
             this.CreateRowButton.UseVisualStyleBackColor = true;
             this.CreateRowButton.Click += new System.EventHandler(this.CreateRowButton_Click);
@@ -129,7 +129,7 @@
             this.ModifyButton.Location = new System.Drawing.Point(79, 347);
             this.ModifyButton.Name = "ModifyButton";
             this.ModifyButton.Size = new System.Drawing.Size(64, 23);
-            this.ModifyButton.TabIndex = 4;
+            this.ModifyButton.TabIndex = 3;
             this.ModifyButton.Text = "Modify";
             this.ModifyButton.UseVisualStyleBackColor = true;
             this.ModifyButton.Click += new System.EventHandler(this.ModifyButton_Click);
@@ -139,7 +139,7 @@
             this.RemoveButton.Location = new System.Drawing.Point(149, 347);
             this.RemoveButton.Name = "RemoveButton";
             this.RemoveButton.Size = new System.Drawing.Size(64, 23);
-            this.RemoveButton.TabIndex = 5;
+            this.RemoveButton.TabIndex = 4;
             this.RemoveButton.Text = "Remove";
             this.RemoveButton.UseVisualStyleBackColor = true;
             this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
@@ -164,7 +164,7 @@
             this.randomDiscountButton.Location = new System.Drawing.Point(9, 377);
             this.randomDiscountButton.Name = "randomDiscountButton";
             this.randomDiscountButton.Size = new System.Drawing.Size(98, 23);
-            this.randomDiscountButton.TabIndex = 7;
+            this.randomDiscountButton.TabIndex = 5;
             this.randomDiscountButton.Text = "Random discount";
             this.randomDiscountButton.UseVisualStyleBackColor = true;
             this.randomDiscountButton.Click += new System.EventHandler(this.randomDiscountButton_Click);
@@ -189,7 +189,7 @@
             this.applyButton.Location = new System.Drawing.Point(110, 347);
             this.applyButton.Name = "applyButton";
             this.applyButton.Size = new System.Drawing.Size(99, 23);
-            this.applyButton.TabIndex = 9;
+            this.applyButton.TabIndex = 7;
             this.applyButton.Text = "Apply discount";
             this.applyButton.UseVisualStyleBackColor = true;
             this.applyButton.Click += new System.EventHandler(this.applyButton_Click);
@@ -247,14 +247,14 @@
             this.sumCostWithDiscountTextBox.Location = new System.Drawing.Point(141, 418);
             this.sumCostWithDiscountTextBox.Name = "sumCostWithDiscountTextBox";
             this.sumCostWithDiscountTextBox.Size = new System.Drawing.Size(100, 20);
-            this.sumCostWithDiscountTextBox.TabIndex = 11;
+            this.sumCostWithDiscountTextBox.TabIndex = 9;
             // 
             // sumCostTextBox
             // 
             this.sumCostTextBox.Location = new System.Drawing.Point(9, 418);
             this.sumCostTextBox.Name = "sumCostTextBox";
             this.sumCostTextBox.Size = new System.Drawing.Size(100, 20);
-            this.sumCostTextBox.TabIndex = 10;
+            this.sumCostTextBox.TabIndex = 8;
             // 
             // discountControl1
             // 

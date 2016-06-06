@@ -40,7 +40,7 @@
             this.certificateRadioButton.Location = new System.Drawing.Point(14, 35);
             this.certificateRadioButton.Name = "certificateRadioButton";
             this.certificateRadioButton.Size = new System.Drawing.Size(117, 17);
-            this.certificateRadioButton.TabIndex = 16;
+            this.certificateRadioButton.TabIndex = 2;
             this.certificateRadioButton.Text = "Certificate Discount";
             this.certificateRadioButton.UseVisualStyleBackColor = true;
             this.certificateRadioButton.CheckedChanged += new System.EventHandler(this.certificateRadioButton_CheckedChanged);
@@ -51,7 +51,7 @@
             this.percentRadioButton.Location = new System.Drawing.Point(14, 12);
             this.percentRadioButton.Name = "percentRadioButton";
             this.percentRadioButton.Size = new System.Drawing.Size(107, 17);
-            this.percentRadioButton.TabIndex = 15;
+            this.percentRadioButton.TabIndex = 1;
             this.percentRadioButton.Text = "Percent Discount";
             this.percentRadioButton.UseVisualStyleBackColor = true;
             this.percentRadioButton.CheckedChanged += new System.EventHandler(this.percentRadioButton_CheckedChanged);

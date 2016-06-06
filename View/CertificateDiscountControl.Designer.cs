@@ -41,14 +41,14 @@
             this.certificateDiscountCategoryComboBox.Location = new System.Drawing.Point(86, 44);
             this.certificateDiscountCategoryComboBox.Name = "certificateDiscountCategoryComboBox";
             this.certificateDiscountCategoryComboBox.Size = new System.Drawing.Size(121, 21);
-            this.certificateDiscountCategoryComboBox.TabIndex = 3;
+            this.certificateDiscountCategoryComboBox.TabIndex = 2;
             // 
             // sumTextBox
             // 
             this.sumTextBox.Location = new System.Drawing.Point(86, 11);
             this.sumTextBox.Name = "sumTextBox";
             this.sumTextBox.Size = new System.Drawing.Size(81, 20);
-            this.sumTextBox.TabIndex = 2;
+            this.sumTextBox.TabIndex = 1;
             // 
             // label7
             // 
