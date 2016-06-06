@@ -132,15 +132,13 @@ namespace View
         /// </summary>
         private void FillTheTable()
         {
-            _discountDataTable.Rows.Clear();
-            foreach (var discount in _discountList)
+            _discountList = DeleteUsed(_discountList);  // Удаление примененных скидок
+            _discountDataTable.Rows.Clear();            // Очистка таблицы
+            foreach (var discount in _discountList)     // Заполнение таблицы новыми скидками
             {
-                discount.Id = _discountList.IndexOf(discount);
-            }
-            foreach (var discount in _discountList)
-            {
-                var type = (discount is PercentDiscount) ? "Percent" : "Certificate";
-                _discountDataTable.Rows.Add(discount.Id, type, discount.GetDescription());
+                    discount.Id = _discountList.IndexOf(discount);
+                    var type = (discount is PercentDiscount) ? "Percent" : "Certificate";
+                    _discountDataTable.Rows.Add(discount.Id, type, discount.GetDescription());
             }
         }
 
@@ -153,7 +151,47 @@ namespace View
                 _goodDataTable.Rows.Add(good.Id, good.Name, String.Format("{0:0.00}", good.Cost), good.Category);
             }
         }
-#endregion
+        #endregion
+        /// <summary>
+        /// Удаление использованных сертификатов
+        /// </summary>
+        private List<IDiscount> DeleteUsed(List<IDiscount> list)
+        {
+            List<IDiscount> newList = new List<IDiscount>();
+            foreach (var discount in list)
+            {
+                if (!(discount is CertificateDiscount && ((CertificateDiscount)discount).IsApplied))
+                {
+                    newList.Add(discount);
+                }
+            }
+            return newList;
+        }
+
+        /// <summary>
+        /// Применение скидок к товарам
+        /// </summary>
+        private void applyButton_Click(object sender, EventArgs e)
+        {
+            if (discountsDataGridView.CurrentRow != null && goodsDataGridView.CurrentRow != null)
+            {
+                double sumWithDiscount = 0;
+                foreach (var good in _goodList)
+                {
+                    foreach (var discount in _discountList)
+                    {
+                        good.Cost = good.Cost - discount.GetDiscount(good);
+                        sumWithDiscount += discount.GetDiscount(good);
+                        FillGoodsTable();
+                    }
+                }
+                string finalSum = Convert.ToString(Convert.ToDouble(sumCostTextBox.Text) - sumWithDiscount);
+                sumCostWithDiscountTextBox.Text = String.Format("{0:0.00}", finalSum);
+                //_goodList.Clear();
+                sumCostTextBox.Text = null;
+                FillTheTable();
+            }
+        }
 
         /// <summary>
         /// Создание новой скидки
@@ -222,30 +260,6 @@ namespace View
                     FillTheTable();
                 }
             }            
-        }
-
-        /// <summary>
-        /// Применение скидок к товарам
-        /// </summary>
-        private void applyButton_Click(object sender, EventArgs e)
-        {
-            if (discountsDataGridView.CurrentRow != null && goodsDataGridView.CurrentRow != null)
-            {
-                double sumWithDiscount = 0;
-                foreach (var good in _goodList)
-                {
-                    foreach (var discount in _discountList)
-                    {
-                        sumWithDiscount += discount.GetDiscount(good);  
-                        good.Cost = good.Cost - discount.GetDiscount(good);
-                    }
-                }
-                string finalSum = Convert.ToString(Convert.ToDouble(sumCostTextBox.Text) - sumWithDiscount);
-                sumCostWithDiscountTextBox.Text = String.Format("{0:0.00}", finalSum);
-                _goodList.Clear();
-                sumCostTextBox.Text = null;
-                FillGoodsTable();
-            }         
         }
 
         // Суммарная стоимость товаров

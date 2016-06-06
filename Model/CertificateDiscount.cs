@@ -15,6 +15,17 @@ namespace Model
         private GoodCategory _category;
 
         /// <summary>
+        /// Скидка применена
+        /// </summary>
+        private bool _isApplied;
+
+        public bool IsApplied
+        {
+            get { return _isApplied; }
+            set { _isApplied = value; }
+        }
+
+        /// <summary>
         /// Номер скидки
         /// </summary>
         private int _id;
@@ -46,6 +57,7 @@ namespace Model
             _id = 0;
             _sum = 0;
             _category = GoodCategory.Electronics;
+            _isApplied = false;
         }
 
         /// <summary>
@@ -59,6 +71,7 @@ namespace Model
             Id = id;
             Sum = sum;
             Category = category;
+            IsApplied = false;
         }
        
         private double _sum; // Сумма, указанная в сертификате, которая вычитается из стоимости товара
@@ -86,21 +99,25 @@ namespace Model
         /// <returns> Возвращает размер скидки для данного товара </returns>
         public double GetDiscount(Good good)
         {
-            if (Category != good.Category)  // Проверка соответствия категорий скидки и товара
+            if (Category != good.Category)  // Скидка не распространяется на этот товар
             {
                 return 0;
             }
-            if (_sum <= good.Cost) // Если сумма не полностью покрывает стоимость товара
+            if (_sum <= good.Cost) // Если сумма сертификата меньше стоимости товара
             {
-                return _sum;
+                var sum = _sum;
+                _sum = 0;
+                _isApplied = true;
+                return sum;
             }
-            return good.Cost;   // Если сумма покрывает стоимость товара полностью
+            _sum = _sum - good.Cost;
+            _isApplied = true;
+            return good.Cost;   // Если сумма сертификата больше стоимости товара
         }
 
         /// <summary>
         /// Получить описание скидки
         /// </summary>
-        /// <returns></returns>
         public string GetDescription()
         {
             _description = _sum + " руб. " + Category;

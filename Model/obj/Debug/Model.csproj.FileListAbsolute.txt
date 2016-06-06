@@ -12,3 +12,8 @@ E:\git-reps\discount\Model\bin\Debug\Model.dll
 E:\git-reps\discount\Model\bin\Debug\Model.pdb
 E:\git-reps\discount\Model\obj\Debug\Model.dll
 E:\git-reps\discount\Model\obj\Debug\Model.pdb
+D:\Git\Model\bin\Debug\Model.dll
+D:\Git\Model\bin\Debug\Model.pdb
+D:\Git\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+D:\Git\Model\obj\Debug\Model.dll
+D:\Git\Model\obj\Debug\Model.pdb
