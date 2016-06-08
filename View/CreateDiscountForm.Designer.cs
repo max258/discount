@@ -1,6 +1,6 @@
 ﻿namespace View
 {
-    partial class CreateForm
+    partial class CreateDiscountForm
     {
         /// <summary>
         /// Required designer variable.
@@ -32,14 +32,14 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.button = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.discountControl1 = new View.DiscountControl();
+            this.discountControl = new View.DiscountControl();
             this.SuspendLayout();
             // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(37, 260);
+            this.okButton.Location = new System.Drawing.Point(30, 123);
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.Size = new System.Drawing.Size(77, 23);
             this.okButton.TabIndex = 10;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
@@ -47,7 +47,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(129, 260);
+            this.cancelButton.Location = new System.Drawing.Point(139, 123);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 11;
@@ -73,35 +73,34 @@
             this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // discountControl1
+            // discountControl
             // 
-            this.discountControl1.Location = new System.Drawing.Point(9, 41);
-            this.discountControl1.Name = "discountControl1";
-            this.discountControl1.Object = null;
-            this.discountControl1.Size = new System.Drawing.Size(247, 197);
-            this.discountControl1.TabIndex = 9;
+            this.discountControl.Discount = null;
+            this.discountControl.Location = new System.Drawing.Point(12, 3);
+            this.discountControl.Name = "discountControl";
+            this.discountControl.Size = new System.Drawing.Size(202, 114);
+            this.discountControl.TabIndex = 9;
             // 
-            // CreateForm
+            // CreateDiscountForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(254, 299);
+            this.ClientSize = new System.Drawing.Size(245, 161);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
-            this.Controls.Add(this.discountControl1);
-            this.MaximumSize = new System.Drawing.Size(270, 338);
-            this.MinimumSize = new System.Drawing.Size(270, 338);
-            this.Name = "CreateForm";
+            this.Controls.Add(this.discountControl);
+            this.MaximumSize = new System.Drawing.Size(261, 200);
+            this.MinimumSize = new System.Drawing.Size(261, 200);
+            this.Name = "CreateDiscountForm";
             this.Text = "New discount";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CreateRowForm_FormClosed);
-            this.Load += new System.EventHandler(this.CreateRowForm_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DiscountControl discountControl1;
+        private DiscountControl discountControl;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button button;

@@ -1,4 +1,4 @@
-﻿namespace Model
+﻿namespace Discounts
 {
     /// <summary>
     /// Перечисление для обозначения категорий товаров

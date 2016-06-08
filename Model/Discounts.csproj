@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CertificateDiscount.cs" />
+    <Compile Include="Discount.cs" />
     <Compile Include="PercentDiscount.cs" />
     <Compile Include="Good.cs" />
     <Compile Include="GoodCategory.cs" />
@@ -53,6 +54,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="RandomDiscount.cs" />
+    <Compile Include="RandomGood.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\Settings.settings">

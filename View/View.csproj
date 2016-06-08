@@ -58,11 +58,11 @@
     <Compile Include="CertificateDiscountControl.Designer.cs">
       <DependentUpon>CertificateDiscountControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CreateRowForm.cs">
+    <Compile Include="CreateDiscountForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CreateRowForm.Designer.cs">
-      <DependentUpon>CreateRowForm.cs</DependentUpon>
+    <Compile Include="CreateDiscountForm.Designer.cs">
+      <DependentUpon>CreateDiscountForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DiscountControl.cs">
       <SubType>UserControl</SubType>
@@ -87,8 +87,8 @@
     <EmbeddedResource Include="CertificateDiscountControl.resx">
       <DependentUpon>CertificateDiscountControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CreateRowForm.resx">
-      <DependentUpon>CreateRowForm.cs</DependentUpon>
+    <EmbeddedResource Include="CreateDiscountForm.resx">
+      <DependentUpon>CreateDiscountForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DiscountControl.resx">
       <DependentUpon>DiscountControl.cs</DependentUpon>
@@ -124,9 +124,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Model\Model.csproj">
+    <ProjectReference Include="..\Model\Discounts.csproj">
       <Project>{4d7459bc-bfdc-4e1c-9a06-92102a409bf8}</Project>
-      <Name>Model</Name>
+      <Name>Discounts</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

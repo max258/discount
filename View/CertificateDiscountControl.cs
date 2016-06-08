@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using Model;
+using Discounts;
 
 namespace View
 {
@@ -23,10 +23,18 @@ namespace View
             {
                 var certificateDiscount = new CertificateDiscount();
                 certificateDiscount.Sum = Convert.ToInt32(sumTextBox.Text);
+                certificateDiscount.IsApplied = false;
                 GoodCategory category;
-                Enum.TryParse<GoodCategory>(certificateDiscountCategoryComboBox.SelectedValue.ToString(), out category);
-                certificateDiscount.Category = category;
-                return certificateDiscount;
+                if (!Enum.TryParse<GoodCategory>(certificateDiscountCategoryComboBox.SelectedValue.ToString(), out category))
+                {
+                    certificateDiscount.Category = category;
+                    return certificateDiscount;
+                }
+                else
+                {
+                    MessageBox.Show("Wrong category!","Error");
+                    return null;
+                }
             }
         }
 

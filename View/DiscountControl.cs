@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using Model;
+using Discounts;
 
 namespace View
 {
@@ -11,17 +11,17 @@ namespace View
             InitializeComponent();
         }
 
-        public IDiscount Object
+        public IDiscount Discount
         {
             get
             {
                 if (certificateRadioButton.Checked)
                 {
-                    return certificateDiscountControl1.CertificateDiscount;
+                    return certificateDiscountControl.CertificateDiscount;
                 }
                 if (percentRadioButton.Checked)
                 {
-                    return percentDiscountControl1.PercentDiscount;
+                    return percentDiscountControl.PercentDiscount;
                 }
                 return null;
             }
@@ -31,27 +31,27 @@ namespace View
                 {
                     percentRadioButton.Checked = false;
                     certificateRadioButton.Checked = true;
-                    percentDiscountControl1.Visible = false;
-                    certificateDiscountControl1.Visible = true;
+                    percentDiscountControl.Visible = false;
+                    certificateDiscountControl.Visible = true;
 
-                    certificateDiscountControl1.CertificateDiscount = (CertificateDiscount)value;
+                    certificateDiscountControl.CertificateDiscount = (CertificateDiscount)value;
                 }
                 else if (value is PercentDiscount)
                 {
                     percentRadioButton.Checked = true;
                     certificateRadioButton.Checked = false;
-                    percentDiscountControl1.Visible = true;
-                    certificateDiscountControl1.Visible = false;
+                    percentDiscountControl.Visible = true;
+                    certificateDiscountControl.Visible = false;
 
-                    percentDiscountControl1.PercentDiscount = (PercentDiscount)value;
+                    percentDiscountControl.PercentDiscount = (PercentDiscount)value;
                 }
                 else if (value == null)
                 {
                     percentRadioButton.Checked = false;
                     certificateRadioButton.Checked = false;
                     
-                    percentDiscountControl1.Visible = false;
-                    certificateDiscountControl1.Visible = false;
+                    percentDiscountControl.Visible = false;
+                    certificateDiscountControl.Visible = false;
                 }
             }
         }
@@ -67,15 +67,15 @@ namespace View
                 {
                     percentRadioButton.Enabled = !value;
                     certificateRadioButton.Enabled = !value;
-                    percentDiscountControl1.ReadOnly = value;
-                    certificateDiscountControl1.ReadOnly = value;
+                    percentDiscountControl.ReadOnly = value;
+                    certificateDiscountControl.ReadOnly = value;
                 }
                 else
                 {
                     percentRadioButton.Enabled = !value;
                     certificateRadioButton.Enabled = !value;
-                    percentDiscountControl1.ReadOnly = value;
-                    certificateDiscountControl1.ReadOnly = value;
+                    percentDiscountControl.ReadOnly = value;
+                    certificateDiscountControl.ReadOnly = value;
                 }
             }
         }
@@ -85,20 +85,20 @@ namespace View
         /// </summary>
         public void Clear()
         {
-            certificateDiscountControl1.Clear();
-            percentDiscountControl1.Clear();
+            certificateDiscountControl.Clear();
+            percentDiscountControl.Clear();
         }
 
         private void percentRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            percentDiscountControl1.Visible = true;
-            certificateDiscountControl1.Visible = false;
+            percentDiscountControl.Visible = true;
+            certificateDiscountControl.Visible = false;
         }
 
         private void certificateRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            percentDiscountControl1.Visible = false;
-            certificateDiscountControl1.Visible = true;
+            percentDiscountControl.Visible = false;
+            certificateDiscountControl.Visible = true;
         }
     }
 }

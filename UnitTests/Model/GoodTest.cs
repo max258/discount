@@ -1,5 +1,5 @@
 ﻿using System;
-using Model;
+using Discounts;
 using NUnit.Framework;
 
 namespace UnitTests.Model
@@ -22,6 +22,10 @@ namespace UnitTests.Model
         public void Cost_Test(double cost)
         {
             var good = new Good();
+            good.Id = 0;
+            good.Name = "";
+            good.Cost = 0;
+            good.Category = (GoodCategory)1;
             good.Cost = cost;
         }
         [Test]

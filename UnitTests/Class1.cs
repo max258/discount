@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace UnitTests
 {
+    //TODO: Убрать пустой класс
     public class Class1
     {
     }

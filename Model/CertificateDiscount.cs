@@ -1,80 +1,30 @@
 ﻿using System;
 
-namespace Model
+namespace Discounts
 {
     /// <summary>
     /// Скидка по сертификату
     /// </summary>
-    public class CertificateDiscount : IDiscount
+    public class CertificateDiscount : Discount, IDiscount
     {
-        /// <summary>
-        /// Категория товаров, на которую распространяется скидка
-        /// </summary>
-        public GoodCategory Category { get; set; }
-
-        private GoodCategory _category;
-
-        /// <summary>
-        /// Скидка применена
-        /// </summary>
-        private bool _isApplied;
-
-        public bool IsApplied
-        {
-            get { return _isApplied; }
-            set { _isApplied = value; }
-        }
-
-        /// <summary>
-        /// Номер скидки
-        /// </summary>
-        private int _id;
-
-        public int Id
-        {
-            get { return _id; }
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Номер должен быть положительным!");
-                }
-                _id = value;
-            }
-        }
-
+        private string _description;
+        private double _sum;
+        
         /// <summary>
         /// Описание скидки
         /// </summary>
-        private string _description;
-        public string Description { get; set; }
-
-        /// <summary>
-        /// Конструктор по умолчанию
-        /// </summary>
-        public CertificateDiscount()
+        public string Description
         {
-            _id = 0;
-            _sum = 0;
-            _category = GoodCategory.Electronics;
-            _isApplied = false;
+            get
+            {
+                _description = _sum + " руб. " + Category;
+                return _description;
+            }
+            set { }
         }
 
-        /// <summary>
-        /// Конструктор с параметрами
-        /// </summary>
-        /// <param name="id">Номер</param>
-        /// <param name="sum">Сумма</param>
-        /// <param name="category">Категория</param>
-        public CertificateDiscount(int id, double sum, GoodCategory category)
-        {
-            Id = id;
-            Sum = sum;
-            Category = category;
-            IsApplied = false;
-        }
-       
-        private double _sum; // Сумма, указанная в сертификате, которая вычитается из стоимости товара
+        // Сертификат применён
+        public bool IsApplied { get; set; }
 
         /// <summary>
         /// Сумма, указанная в сертификате, которая вычитается из стоимости товара
@@ -84,7 +34,7 @@ namespace Model
             get { return _sum; }
             set
             {
-                if (value < 1)
+                if (value <= 0)
                 {
                     throw new ArgumentException("Сумма сертификата должна быть положительной!");
                 }
@@ -107,21 +57,12 @@ namespace Model
             {
                 var sum = _sum;
                 _sum = 0;
-                _isApplied = true;
+                IsApplied = true;
                 return sum;
             }
             _sum = _sum - good.Cost;
-            _isApplied = true;
+            IsApplied = true;
             return good.Cost;   // Если сумма сертификата больше стоимости товара
-        }
-
-        /// <summary>
-        /// Получить описание скидки
-        /// </summary>
-        public string GetDescription()
-        {
-            _description = _sum + " руб. " + Category;
-            return _description;
         }
     }
 }

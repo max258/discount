@@ -1,5 +1,5 @@
 D:\Discount_Bogomolov\Model\bin\Debug\Model.dll
 D:\Discount_Bogomolov\Model\bin\Debug\Model.pdb
-D:\Discount_Bogomolov\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
 D:\Discount_Bogomolov\Model\obj\Debug\Model.dll
 D:\Discount_Bogomolov\Model\obj\Debug\Model.pdb
+D:\Discount_Bogomolov\Model\obj\Debug\Discounts.csprojResolveAssemblyReference.cache

@@ -1,9 +1,0 @@
-E:\git-reps\discount\UnitTests\bin\Release\UnitTests.dll
-E:\git-reps\discount\UnitTests\bin\Release\UnitTests.pdb
-E:\git-reps\discount\UnitTests\bin\Release\Model.dll
-E:\git-reps\discount\UnitTests\bin\Release\nunit.framework.dll
-E:\git-reps\discount\UnitTests\bin\Release\Model.pdb
-E:\git-reps\discount\UnitTests\bin\Release\nunit.framework.xml
-E:\git-reps\discount\UnitTests\obj\Release\UnitTests.csprojResolveAssemblyReference.cache
-E:\git-reps\discount\UnitTests\obj\Release\UnitTests.dll
-E:\git-reps\discount\UnitTests\obj\Release\UnitTests.pdb

@@ -2,9 +2,10 @@
 using System.Data;
 using System.Windows.Forms;
 using System.Collections.Generic;
-using Model;
+using Discounts;
 using Newtonsoft.Json;
 using System.IO;
+using System.Linq;
 
 namespace View
 {
@@ -16,25 +17,23 @@ namespace View
         private List<IDiscount> _discountList = new List<IDiscount>(); // Список скидок
         private List<Good> _goodList = new List<Good>(); // Список товаров
 
-        private CreateForm _createForm = new CreateForm();
+        private CreateDiscountForm _createDiscountForm = new CreateDiscountForm();
 
 
         public MainForm()
         {
             InitializeComponent();
             CreateDataTable();
-            discountControl1.ReadOnly = true;
+            discountControl.ReadOnly = true;
         }
 
-#region Структура таблиц
+        #region Структура таблиц
         /// <summary>
         /// Создание таблиц
         /// </summary>
         private void CreateDataTable()
         {
-            ////////////////////////////////////////////////////////////
             // Таблица скидок
-            ////////////////////////////////////////////////////////////
             discountsDataGridView.DataSource = _discountDataTable;
 
             // Идентификатор скидки
@@ -73,9 +72,7 @@ namespace View
             gridColumn = discountsDataGridView.Columns[2];
             gridColumn.Width = 110;
 
-            ////////////////////////////////////////////////////////////
             // Таблица товаров
-            ////////////////////////////////////////////////////////////
             goodsDataGridView.DataSource = _goodDataTable;
 
             // Идентификатор товара
@@ -125,12 +122,12 @@ namespace View
             gridColumn.Width = 60;
 
         }
-#endregion
-#region Заполнение таблиц
+        #endregion
+        #region Заполнение таблиц
         /// <summary>
         /// Заполнение таблицы скидок
         /// </summary>
-        private void FillTheTable()
+        private void FillDiscountsTable()
         {
             _discountList = DeleteUsed(_discountList);  // Удаление примененных скидок
             _discountDataTable.Rows.Clear();            // Очистка таблицы
@@ -138,7 +135,7 @@ namespace View
             {
                     discount.Id = _discountList.IndexOf(discount);
                     var type = (discount is PercentDiscount) ? "Percent" : "Certificate";
-                    _discountDataTable.Rows.Add(discount.Id, type, discount.GetDescription());
+                    _discountDataTable.Rows.Add(discount.Id, type, discount.Description);
             }
         }
 
@@ -148,10 +145,12 @@ namespace View
             _goodDataTable.Rows.Clear();
             foreach (var good in _goodList)
             {
+                good.Id = _goodList.IndexOf(good);
                 _goodDataTable.Rows.Add(good.Id, good.Name, String.Format("{0:0.00}", good.Cost), good.Category);
             }
         }
         #endregion
+
         /// <summary>
         /// Удаление использованных сертификатов
         /// </summary>
@@ -187,7 +186,7 @@ namespace View
                 sumCostWithDiscountTextBox.Text = String.Format("{0:0.00}", sumWithDiscount);
                 //_goodList.Clear();
                 FillGoodsTable();
-                FillTheTable();
+                FillDiscountsTable();
                 sumCostTextBox.Text = null;
             }
         }
@@ -198,15 +197,14 @@ namespace View
         private void CreateRowButton_Click(object sender, EventArgs e)
         {
             // Вызов формы создания
-            _createForm.ShowDialog();
+            _createDiscountForm.ShowDialog();
             // Добавление скидки, хранящейся в экземпляре формы создания
-            if (_createForm.Discount != null)
+            if (_createDiscountForm.Discount != null)
             {
-                _discountList.Add(_createForm.Discount);
-                _createForm.Discount = null;
+                _discountList.Add(_createDiscountForm.Discount);
             }
-
-            FillTheTable();
+            FillDiscountsTable();
+            _createDiscountForm.Discount = null;
             discountsDataGridView.Update();
         }
 
@@ -217,11 +215,11 @@ namespace View
         {
             if (discountsDataGridView.CurrentRow != null)
             {
-                _createForm.Discount = _discountList[Convert.ToInt32(discountsDataGridView.CurrentRow.Cells[0].Value)];
-                _createForm.ShowDialog();
-                _discountList[Convert.ToInt32(discountsDataGridView.CurrentRow.Cells[0].Value)] = _createForm.Discount;
-                FillTheTable();
-                _createForm.Discount = null;
+                _createDiscountForm.Discount = _discountList[Convert.ToInt32(discountsDataGridView.CurrentRow.Cells[0].Value)];
+                _createDiscountForm.ShowDialog();
+                _discountList[Convert.ToInt32(discountsDataGridView.CurrentRow.Cells[0].Value)] = _createDiscountForm.Discount;
+                FillDiscountsTable();
+                _createDiscountForm.Discount = null;
             }
         }
 
@@ -232,7 +230,7 @@ namespace View
         {
             if (discountsDataGridView.CurrentRow != null)
             {
-                discountControl1.Object = _discountList[Convert.ToInt32(discountsDataGridView.CurrentRow.Cells[0].Value)];
+                discountControl.Discount = _discountList[Convert.ToInt32(discountsDataGridView.CurrentRow.Cells[0].Value)];
             }
         }
 
@@ -249,14 +247,12 @@ namespace View
                     if (_discountList.Count == 1)
                     {
                         _discountList.Clear();
-                        _createForm.DiscountCount = 0;
                     }
                     else
                     {
                         _discountList.RemoveAt(Convert.ToInt32(discountsDataGridView.CurrentRow.Cells[0].Value));
-                        _createForm.DiscountCount--;
                     }
-                    FillTheTable();
+                    FillDiscountsTable();
                 }
             }            
         }
@@ -264,11 +260,7 @@ namespace View
         // Суммарная стоимость товаров
         private void goodsDataGridView_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-            double sum = 0;
-            foreach (var good in _goodList)
-            {
-                sum += good.Cost;
-            }
+            var sum = _goodList.Sum(good => good.Cost);
             sumCostTextBox.Text = sum.ToString();
         }
 
@@ -301,18 +293,34 @@ namespace View
                 {
                     _goodList.Clear();
                     _discountList.Clear();
-                    FillTheTable();
+                    FillDiscountsTable();
                     FillGoodsTable();
                     this.Text = "Discount System";
                 }
             }
         }
 
-#region Сериализация и десериализация
-        //-----------------------------------------------------------------------------------------
-        // Сериализация
-        //-----------------------------------------------------------------------------------------
+        /// <summary>
+        /// Создание случайного товара
+        /// </summary>
+        private void randomGoodButton_Click(object sender, EventArgs e)
+        {
+            sumCostWithDiscountTextBox.Text = null;
+            _goodList.Add(new RandomGood().Good);
+            FillGoodsTable();
+        }
 
+        /// <summary>
+        /// Создание случайной скидки
+        /// </summary>
+        private void randomDiscountButton_Click(object sender, EventArgs e)
+        {
+            _discountList.Add(new RandomDiscount().Discount);
+            FillDiscountsTable();
+        }
+
+        #region Сериализация и десериализация
+        // Сериализация
         /// <summary>
         /// Сохранить список скидок
         /// </summary>
@@ -341,10 +349,7 @@ namespace View
             }
         }
 
-        //-----------------------------------------------------------------------------------------
         // Десериализация
-        //-----------------------------------------------------------------------------------------
-
         /// <summary>
         /// Открыть сохраненный список скидок
         /// </summary>
@@ -373,88 +378,8 @@ namespace View
                     this.Text = Path.GetFileNameWithoutExtension(openFileDialog.FileName) + " - Discount System";
                 }
             }
-            _createForm.DiscountCount = _discountList.Count;
-            FillTheTable();
+            FillDiscountsTable();
         }
-#endregion
-#region Случайные данные
-        // Данные для случайного заполнения строк
-        private string[] electronic = { "ASUS X550L", "ZTE Nubia Z7", "IPhone 4S", "Nokia C6-01", "Nokia 3310", "OnePlus One" };
-        private string[] food = { "Bread", "Pepsi", "Milk", "Snickers", "Chicken", "Eggs" };
-        private string[] cosmetic = { "Red lipstic", "Black lipstic", "Blue hair dye", "Brown hair dye", "Perfume", "Nail polish" };
-        private string[] chemistry = { "Mr. Proper", "Soap", "Ariel", "Fairy", "Bref", "Domestos" };
-        private string[] clothes = { "Blue shirt", "Red dress", "Black skirt", "Grey jacket", "Jeans", "Black hat" };
-
-        /// <summary>
-        /// Создание случайного товара
-        /// </summary>
-        private void randomGoodButton_Click(object sender, EventArgs e)
-        {
-            sumCostWithDiscountTextBox.Text = null;
-            Good randomGood = new Good();
-            var random = new Random();
-            int category = random.Next(5);
-            switch (category)
-            {
-                case 0:
-                    randomGood.Category = GoodCategory.Electronics;
-                    randomGood.Name = electronic[random.Next(6)];
-                    randomGood.Cost = random.Next(3000, 50000);
-                    randomGood.Id = _goodList.Count;
-                    break;
-                case 1:
-                    randomGood.Category = GoodCategory.Food;
-                    randomGood.Name = food[random.Next(6)];
-                    randomGood.Cost = random.Next(50, 600);
-                    randomGood.Id = _goodList.Count;
-                    break;
-                case 2:
-                    randomGood.Category = GoodCategory.Cosmetic;
-                    randomGood.Name = cosmetic[random.Next(6)];
-                    randomGood.Cost = random.Next(1000, 3000);
-                    randomGood.Id = _goodList.Count;
-                    break;
-                case 3:
-                    randomGood.Category = GoodCategory.Chemistry;
-                    randomGood.Name = chemistry[random.Next(6)];
-                    randomGood.Cost = random.Next(50, 500);
-                    randomGood.Id = _goodList.Count;
-                    break;
-                case 4:
-                    randomGood.Category = GoodCategory.Clothes;
-                    randomGood.Name = clothes[random.Next(6)];
-                    randomGood.Cost = random.Next(2000, 10000);
-                    randomGood.Id = _goodList.Count;
-                    break;
-            }
-            _goodList.Add(randomGood);
-            FillGoodsTable();
-        }
-
-        /// <summary>
-        /// Создание случайной скидки
-        /// </summary>
-        private void randomDiscountButton_Click(object sender, EventArgs e)
-        {
-            IDiscount randomDiscount = new PercentDiscount();
-            var random = new Random();
-            GoodCategory category = (GoodCategory)random.Next(1, 5);
-            int discountType = random.Next(2);
-            switch (discountType)
-            {
-                case 0:
-                    int percent = random.Next(1, 100);
-                    randomDiscount = new PercentDiscount(_discountList.Count, percent, category);
-                    break;
-                case 1:
-                    double sum = random.Next(10000);
-                    randomDiscount = new CertificateDiscount(_discountList.Count , sum, category);
-                    break;
-            }
-            _createForm.DiscountCount++;
-            _discountList.Add(randomDiscount);
-            FillTheTable();
-        }
-#endregion 
+        #endregion
     }
 }

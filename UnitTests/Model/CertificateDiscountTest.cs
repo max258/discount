@@ -1,5 +1,5 @@
 ﻿using System;
-using Model;
+using Discounts;
 using NUnit.Framework;
 
 namespace UnitTests.Model
@@ -73,8 +73,15 @@ namespace UnitTests.Model
 
         public void GetDiscount_Test(double goodPrice, double discountValue, double expected)
         {
-            var good = new Good(0, "Name", goodPrice, GoodCategory.Electronics);
-            var discount = new CertificateDiscount(0, discountValue, GoodCategory.Electronics);
+            var good = new Good();
+            good.Id = 0;
+            good.Name = "";
+            good.Cost = goodPrice;
+            good.Category = (GoodCategory) 1;
+            var discount = new CertificateDiscount();
+            discount.Id = 0;
+            discount.Sum = discountValue;
+            discount.Category = (GoodCategory) 1;
             var actual = discount.GetDiscount(good);
             Assert.AreEqual(expected, actual);
         }

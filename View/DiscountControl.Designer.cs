@@ -30,14 +30,14 @@
         {
             this.certificateRadioButton = new System.Windows.Forms.RadioButton();
             this.percentRadioButton = new System.Windows.Forms.RadioButton();
-            this.percentDiscountControl1 = new View.PercentDiscountControl();
-            this.certificateDiscountControl1 = new View.CertificateDiscountControl();
+            this.percentDiscountControl = new View.PercentDiscountControl();
+            this.certificateDiscountControl = new View.CertificateDiscountControl();
             this.SuspendLayout();
             // 
             // certificateRadioButton
             // 
             this.certificateRadioButton.AutoSize = true;
-            this.certificateRadioButton.Location = new System.Drawing.Point(14, 35);
+            this.certificateRadioButton.Location = new System.Drawing.Point(4, 26);
             this.certificateRadioButton.Name = "certificateRadioButton";
             this.certificateRadioButton.Size = new System.Drawing.Size(117, 17);
             this.certificateRadioButton.TabIndex = 2;
@@ -48,7 +48,7 @@
             // percentRadioButton
             // 
             this.percentRadioButton.AutoSize = true;
-            this.percentRadioButton.Location = new System.Drawing.Point(14, 12);
+            this.percentRadioButton.Location = new System.Drawing.Point(4, 3);
             this.percentRadioButton.Name = "percentRadioButton";
             this.percentRadioButton.Size = new System.Drawing.Size(107, 17);
             this.percentRadioButton.TabIndex = 1;
@@ -56,32 +56,32 @@
             this.percentRadioButton.UseVisualStyleBackColor = true;
             this.percentRadioButton.CheckedChanged += new System.EventHandler(this.percentRadioButton_CheckedChanged);
             // 
-            // percentDiscountControl1
+            // percentDiscountControl
             // 
-            this.percentDiscountControl1.Location = new System.Drawing.Point(14, 73);
-            this.percentDiscountControl1.Name = "percentDiscountControl1";
-            this.percentDiscountControl1.Size = new System.Drawing.Size(223, 81);
-            this.percentDiscountControl1.TabIndex = 19;
-            this.percentDiscountControl1.Visible = false;
+            this.percentDiscountControl.Location = new System.Drawing.Point(0, 58);
+            this.percentDiscountControl.Name = "percentDiscountControl";
+            this.percentDiscountControl.Size = new System.Drawing.Size(200, 50);
+            this.percentDiscountControl.TabIndex = 19;
+            this.percentDiscountControl.Visible = false;
             // 
-            // certificateDiscountControl1
+            // certificateDiscountControl
             // 
-            this.certificateDiscountControl1.Location = new System.Drawing.Point(14, 73);
-            this.certificateDiscountControl1.Name = "certificateDiscountControl1";
-            this.certificateDiscountControl1.Size = new System.Drawing.Size(223, 82);
-            this.certificateDiscountControl1.TabIndex = 20;
-            this.certificateDiscountControl1.Visible = false;
+            this.certificateDiscountControl.Location = new System.Drawing.Point(0, 58);
+            this.certificateDiscountControl.Name = "certificateDiscountControl";
+            this.certificateDiscountControl.Size = new System.Drawing.Size(200, 50);
+            this.certificateDiscountControl.TabIndex = 20;
+            this.certificateDiscountControl.Visible = false;
             // 
             // DiscountControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.percentDiscountControl1);
-            this.Controls.Add(this.certificateDiscountControl1);
+            this.Controls.Add(this.percentDiscountControl);
+            this.Controls.Add(this.certificateDiscountControl);
             this.Controls.Add(this.certificateRadioButton);
             this.Controls.Add(this.percentRadioButton);
             this.Name = "DiscountControl";
-            this.Size = new System.Drawing.Size(259, 160);
+            this.Size = new System.Drawing.Size(202, 114);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -91,7 +91,7 @@
 
         private System.Windows.Forms.RadioButton certificateRadioButton;
         private System.Windows.Forms.RadioButton percentRadioButton;
-        private PercentDiscountControl percentDiscountControl1;
-        private CertificateDiscountControl certificateDiscountControl1;
+        private PercentDiscountControl percentDiscountControl;
+        private CertificateDiscountControl certificateDiscountControl;
     }
 }

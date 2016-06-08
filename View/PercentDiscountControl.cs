@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using Model;
+using Discounts;
 
 namespace View
 {
@@ -24,9 +24,16 @@ namespace View
                 var percentDiscount = new PercentDiscount();
                 percentDiscount.Percent = Convert.ToInt32(percentTextBox.Text);
                 GoodCategory category;
-                Enum.TryParse<GoodCategory>(percentDiscountCategoryComboBox.SelectedValue.ToString(), out category);
-                percentDiscount.Category = category;
-                return percentDiscount;
+                if (Enum.TryParse<GoodCategory>(percentDiscountCategoryComboBox.SelectedValue.ToString(), out category))
+                {
+                    percentDiscount.Category = category;
+                    return percentDiscount;
+                }
+                else
+                {
+                    MessageBox.Show("Wrong category!","Error!");
+                    return null;
+                }
             }
         }
 

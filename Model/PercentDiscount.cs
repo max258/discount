@@ -1,44 +1,27 @@
 ﻿using System;
 
-namespace Model
+namespace Discounts
 {
     /// <summary>
     /// Процентная скидка
     /// </summary>
-    public class PercentDiscount : IDiscount
+    public class PercentDiscount : Discount, IDiscount
     {
         private string _description;
+        private int _percent;
 
-        /// <summary>
-        /// Категория товаров, на которую распространяется скидка
-        /// </summary>
-        public GoodCategory Category { get; set; }
-
-        private GoodCategory _category;
-
-        /// <summary>
-        /// Номер скидки
-        /// </summary>
-        private int _id;
-
-        public int Id
-        {
-            get { return _id; }
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Номер должен быть положмиельным!");
-                }
-                _id = value;
-            }
-        }
         /// <summary>
         /// Описание скидки
         /// </summary>
-        public string Description { get; set; }
-
-        private int _percent; // Процент, вычитающийся из суммы товара
+        public string Description
+        {
+            get
+            {
+                _description = _percent + "% " + Category;
+                return _description;
+            }
+            set { }
+        }
 
         /// <summary>
         /// Процент, вычитающийся из суммы товара
@@ -57,30 +40,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Конструктор по умолчанию
-        /// </summary>
-        public PercentDiscount()
-        {
-            _id = 0;
-            _percent = 0;
-            _category = GoodCategory.Electronics;
-        }
-
-        /// <summary>
-        /// Конструктор с параметрами
-        /// </summary>
-        /// <param name="id">Номер</param>
-        /// <param name="percent">Процент</param>
-        /// <param name="category">Категория</param>
-        public PercentDiscount(int id ,int percent, GoodCategory category)
-        {
-            Id = id;
-            Percent = percent;
-            Category = category;
-        }
-
-        /// <summary>
-        /// Метод для рассчета скидки
+        /// Метод для расчета скидки
         /// </summary>
         /// <param name="good"> Товар для которого рассчитывается скидка </param>
         /// <returns> Возвращает размер скидки для данного товара </returns>
@@ -90,17 +50,7 @@ namespace Model
             {
                 return 0;
             }
-            return (good.Cost/100)*_percent;
-        }
-
-        /// <summary>
-        /// Получить описание скидки
-        /// </summary>
-        /// <returns></returns>
-        public string GetDescription()
-        {
-            _description = _percent + "% " + Category;
-            return _description;
+            return (good.Cost / 100) * _percent;
         }
     }
 }

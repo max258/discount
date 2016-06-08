@@ -47,9 +47,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Model\Model.csproj">
+    <ProjectReference Include="..\Model\Discounts.csproj">
       <Project>{4d7459bc-bfdc-4e1c-9a06-92102a409bf8}</Project>
-      <Name>Model</Name>
+      <Name>Discounts</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

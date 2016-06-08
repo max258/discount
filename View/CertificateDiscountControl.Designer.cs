@@ -38,14 +38,14 @@
             // 
             this.certificateDiscountCategoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.certificateDiscountCategoryComboBox.FormattingEnabled = true;
-            this.certificateDiscountCategoryComboBox.Location = new System.Drawing.Point(86, 44);
+            this.certificateDiscountCategoryComboBox.Location = new System.Drawing.Point(75, 26);
             this.certificateDiscountCategoryComboBox.Name = "certificateDiscountCategoryComboBox";
             this.certificateDiscountCategoryComboBox.Size = new System.Drawing.Size(121, 21);
             this.certificateDiscountCategoryComboBox.TabIndex = 2;
             // 
             // sumTextBox
             // 
-            this.sumTextBox.Location = new System.Drawing.Point(86, 11);
+            this.sumTextBox.Location = new System.Drawing.Point(75, 1);
             this.sumTextBox.Name = "sumTextBox";
             this.sumTextBox.Size = new System.Drawing.Size(81, 20);
             this.sumTextBox.TabIndex = 1;
@@ -53,7 +53,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(10, 47);
+            this.label7.Location = new System.Drawing.Point(3, 29);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(49, 13);
             this.label7.TabIndex = 1;
@@ -62,7 +62,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(10, 14);
+            this.label6.Location = new System.Drawing.Point(3, 3);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(28, 13);
             this.label6.TabIndex = 0;
@@ -77,7 +77,7 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Name = "CertificateDiscountControl";
-            this.Size = new System.Drawing.Size(223, 81);
+            this.Size = new System.Drawing.Size(200, 50);
             this.ResumeLayout(false);
             this.PerformLayout();
 
